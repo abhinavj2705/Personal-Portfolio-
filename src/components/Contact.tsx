@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Send, CheckCircle, AlertCircle, MapPin, Sparkles } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle, MapPin, Sparkles } from 'lucide-react';
 import { linkedInUrl, githubUrl } from '../data/portfolioData';
 import { GithubIcon, LinkedinIcon } from './SocialIcons';
 

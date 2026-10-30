@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowUpRight, FileText, Mail, ChevronDown, Sparkles } from 'lucide-react';
+import { ArrowUpRight, FileText, Mail, ChevronDown } from 'lucide-react';
 import { resumeUrl } from '../data/portfolioData';
 
 export const Hero: React.FC = () => {
@@ -16,15 +16,6 @@ export const Hero: React.FC = () => {
       className="relative min-h-[92vh] flex flex-col justify-center items-center pt-28 pb-16 overflow-hidden text-center"
     >
       <div className="max-w-4xl mx-auto px-6 w-full relative z-10 flex flex-col items-center">
-        
-        {/* Status Badge - Centered Glass Pill */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 backdrop-blur-xl glass-panel mb-8 hover:border-cyan-500/50 transition-colors shadow-sm">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-pulse" />
-          <span className="text-xs font-semibold text-cyan-700 dark:text-cyan-300 tracking-wide font-mono">
-            Open to New Opportunities • 2025
-          </span>
-        </div>
-
         {/* Name - Big, Centered, Clean Gradient Headline */}
         <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-slate-900 dark:text-white mb-6 leading-[1.08]">
           Hi, I'm{' '}
@@ -74,30 +65,8 @@ export const Hero: React.FC = () => {
           </button>
         </div>
 
-        {/* Centered Highlights / Metrics Glassmorphism Banner */}
-        <div className="w-full max-w-2xl mx-auto p-4 sm:p-5 rounded-3xl bg-white/70 dark:bg-white/[0.03] border border-black/[0.08] dark:border-white/[0.08] backdrop-blur-2xl grid grid-cols-3 gap-4 shadow-xl dark:shadow-[0_8px_32px_0_rgba(0,0,0,0.37)]">
-          <div className="flex flex-col items-center justify-center py-1 border-r border-black/5 dark:border-white/5">
-            <div className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">3,000+</div>
-            <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-mono uppercase tracking-wider mt-0.5">
-              Active Users
-            </div>
-          </div>
-          <div className="flex flex-col items-center justify-center py-1 border-r border-black/5 dark:border-white/5">
-            <div className="text-2xl sm:text-3xl font-black text-cyan-600 dark:text-cyan-400">6+</div>
-            <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-mono uppercase tracking-wider mt-0.5">
-              Shipped Projects
-            </div>
-          </div>
-          <div className="flex flex-col items-center justify-center py-1">
-            <div className="text-2xl sm:text-3xl font-black text-indigo-600 dark:text-indigo-400">Azure AI</div>
-            <div className="text-[11px] sm:text-xs text-slate-500 dark:text-slate-400 font-mono uppercase tracking-wider mt-0.5">
-              Certified
-            </div>
-          </div>
-        </div>
-
         {/* Scroll Indicator */}
-        <div className="mt-14 flex justify-center">
+        <div className="mt-6 flex justify-center">
           <button
             onClick={() => scrollTo('about')}
             className="flex flex-col items-center gap-2 text-slate-500 hover:text-cyan-600 dark:hover:text-cyan-400 transition cursor-pointer group"

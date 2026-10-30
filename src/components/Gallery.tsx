@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Camera, Calendar, MapPin, Sparkles, Play, Pause, ChevronLeft, ChevronRight, X, Maximize2 } from 'lucide-react';
+import { Camera, Calendar, MapPin, Sparkles, Play, Pause, X } from 'lucide-react';
 
 interface GalleryMoment {
   id: number;
@@ -13,8 +13,8 @@ interface GalleryMoment {
 }
 
 export const Gallery: React.FC = () => {
-  // Pre-configured moments with high-quality tech/campus photos.
-  // Abhinav can replace any imageUrl with his own photo path (e.g., '/gallery/my-photo.jpg' or external URL).
+  // Photos stored directly in the /public folder
+  // To add more photos, place them in the 'public' folder and reference them as '/filename.ext'
   const [moments] = useState<GalleryMoment[]>([
     {
       id: 1,
@@ -22,7 +22,7 @@ export const Gallery: React.FC = () => {
       category: 'Developer Community',
       date: '2025 - Present',
       location: 'CHRIST University',
-      imageUrl: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=700&q=80',
+      imageUrl: '/d1.jpeg',
       description: 'Mentoring peers, evaluating project submissions, and organizing developer workshops with DevSoc.',
       accent: 'text-cyan-400 border-cyan-500/30 bg-cyan-500/10'
     },
@@ -32,7 +32,7 @@ export const Gallery: React.FC = () => {
       category: 'Campus Culture',
       date: 'Culture Team',
       location: 'Bengaluru Campus',
-      imageUrl: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=700&q=80',
+      imageUrl: '/d2.jpeg',
       description: 'Leading stage coordination, student engagement, and university-wide festival operations.',
       accent: 'text-purple-400 border-purple-500/30 bg-purple-500/10'
     },
@@ -42,7 +42,7 @@ export const Gallery: React.FC = () => {
       category: 'Product Deployment',
       date: 'Orientation 2024',
       location: 'Kengeri Campus',
-      imageUrl: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=700&q=80',
+      imageUrl: '/CCIF.jpeg',
       description: 'Deploying the CU Now guidance application to over 3,000+ newly admitted university students.',
       accent: 'text-blue-400 border-blue-500/30 bg-blue-500/10'
     },
@@ -52,43 +52,118 @@ export const Gallery: React.FC = () => {
       category: 'Technical Workshop',
       date: 'Symposium',
       location: 'CHRIST University',
-      imageUrl: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=700&q=80',
+      imageUrl: '/CICF.jpeg',
       description: 'Hands-on hardware and software demonstrations at IEEE Computer Society conferences.',
       accent: 'text-indigo-400 border-indigo-500/30 bg-indigo-500/10'
     },
     {
       id: 5,
-      title: 'Student Welfare Office',
-      category: 'Campus Leadership',
-      date: 'SWO Council',
+      title: 'AWS Cloud Experience',
+      category: 'Cloud Computing',
+      date: 'AWS Summit',
       location: 'CHRIST University',
-      imageUrl: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=700&q=80',
-      description: 'Student induction, campus mentoring, and student body representation.',
+      imageUrl: '/AWS.png',
+      description: 'Cloud architecture workshops and AWS ecosystem exploration.',
       accent: 'text-emerald-400 border-emerald-500/30 bg-emerald-500/10'
     },
     {
       id: 6,
-      title: 'Sports & Athletics Meet',
-      category: 'Athletics & Teams',
-      date: 'Sports Council',
+      title: 'AWS Workshop Session',
+      category: 'Cloud & DevOps',
+      date: 'Workshop',
       location: 'Bengaluru',
-      imageUrl: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=700&q=80',
-      description: 'Athletic coordination, university representation, and track & field operations.',
+      imageUrl: '/aws new.jfif',
+      description: 'Hands-on experience with AWS cloud services, serverless computing, and DevOps practices.',
+      accent: 'text-orange-400 border-orange-500/30 bg-orange-500/10'
+    },
+    {
+      id: 7,
+      title: 'Campus Moments',
+      category: 'Campus Life',
+      date: 'University',
+      location: 'Bengaluru',
+      imageUrl: '/DSC09156 (1).JPG.jpeg',
+      description: 'Memorable campus moments, student activities, and university life at CHRIST.',
       accent: 'text-rose-400 border-rose-500/30 bg-rose-500/10'
+    },
+    {
+      id: 8,
+      title: 'Team Collaboration',
+      category: 'Team Work',
+      date: 'Events',
+      location: 'CHRIST University',
+      imageUrl: '/DSC09157.JPG.jpeg',
+      description: 'Working together with fellow students on projects, events, and creative initiatives.',
+      accent: 'text-sky-400 border-sky-500/30 bg-sky-500/10'
+    },
+    {
+      id: 9,
+      title: 'Builder Mindset',
+      category: 'Innovation',
+      date: 'Hackathons',
+      location: 'Bengaluru',
+      imageUrl: '/builder.jpeg',
+      description: 'Building innovative solutions and prototypes across various hackathons and tech events.',
+      accent: 'text-amber-400 border-amber-500/30 bg-amber-500/10'
+    },
+    {
+      id: 10,
+      title: 'Cloud Certification',
+      category: 'Achievements',
+      date: 'AWS',
+      location: 'Cloud',
+      imageUrl: '/awsss.jfif',
+      description: 'Cloud computing certification journey and professional development milestones.',
+      accent: 'text-teal-400 border-teal-500/30 bg-teal-500/10'
+    },
+    {
+      id: 11,
+      title: 'Professional Networking',
+      category: 'Networking',
+      date: 'Events',
+      location: 'Bengaluru',
+      imageUrl: '/new.jfif',
+      description: 'Professional networking and industry connections at tech conferences and meetups.',
+      accent: 'text-violet-400 border-violet-500/30 bg-violet-500/10'
+    },
+    {
+      id: 12,
+      title: 'Profile Snapshot',
+      category: 'Personal',
+      date: 'Portfolio',
+      location: 'Bengaluru',
+      imageUrl: '/66185053-1ddf-4dba-b47a-6457bcb07ea0.jfif',
+      description: 'A snapshot from the portfolio — professional identity and personal branding.',
+      accent: 'text-pink-400 border-pink-500/30 bg-pink-500/10'
     },
   ]);
 
   const [isPaused, setIsPaused] = useState<boolean>(false);
   const [selectedMoment, setSelectedMoment] = useState<GalleryMoment | null>(null);
-  const [activeCenterIndex, setActiveCenterIndex] = useState<number>(0);
   const [viewMode, setViewMode] = useState<'wheel' | 'grid'>('wheel');
+
+  // Fallback handler if image path ever differs
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const img = e.currentTarget;
+    if (!img.dataset.triedFallback) {
+      img.dataset.triedFallback = '1';
+      const currentSrc = img.getAttribute('src') || '';
+      if (currentSrc.startsWith('/photos/')) {
+        img.src = currentSrc.replace('/photos/', '/');
+      } else if (currentSrc.startsWith('/gallery/')) {
+        img.src = currentSrc.replace('/gallery/', '/');
+      } else if (currentSrc.startsWith('/')) {
+        img.src = '/photos' + currentSrc;
+      }
+    }
+  };
 
   // Radius for circular positioning (in pixels)
   const radius = 230;
   const count = moments.length;
 
   return (
-    <section id="gallery" className="py-24 relative border-t border-black/[0.06] dark:border-white/5 overflow-hidden">
+    <section id="gallery" className="py-24 relative border-t border-slate-200/50 dark:border-white/5 overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
         
         {/* Centered Section Header */}
@@ -108,15 +183,15 @@ export const Gallery: React.FC = () => {
           <div className="flex items-center justify-center gap-3 pt-3">
             <button
               onClick={() => setIsPaused(!isPaused)}
-              className="px-4 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/[0.05] hover:bg-black/[0.08] dark:hover:bg-white/[0.1] border border-black/[0.08] dark:border-white/10 text-xs font-mono text-slate-700 dark:text-slate-300 transition flex items-center gap-1.5 cursor-pointer"
+              className="px-4 py-1.5 rounded-full bg-slate-100 dark:bg-white/[0.05] hover:bg-slate-200 dark:hover:bg-white/[0.1] border border-slate-200 dark:border-white/10 text-xs font-mono text-slate-700 dark:text-slate-300 transition flex items-center gap-1.5 cursor-pointer"
             >
-              {isPaused ? <Play className="w-3.5 h-3.5 text-emerald-400" /> : <Pause className="w-3.5 h-3.5 text-cyan-400" />}
+              {isPaused ? <Play className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400" /> : <Pause className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />}
               <span>{isPaused ? 'Resume Rotation' : 'Pause Rotation'}</span>
             </button>
 
             <button
               onClick={() => setViewMode(viewMode === 'wheel' ? 'grid' : 'wheel')}
-              className="px-4 py-1.5 rounded-full bg-black/[0.04] dark:bg-white/[0.05] hover:bg-black/[0.08] dark:hover:bg-white/[0.1] border border-black/[0.08] dark:border-white/10 text-xs font-mono text-slate-700 dark:text-slate-300 transition cursor-pointer"
+              className="px-4 py-1.5 rounded-full bg-slate-100 dark:bg-white/[0.05] hover:bg-slate-200 dark:hover:bg-white/[0.1] border border-slate-200 dark:border-white/10 text-xs font-mono text-slate-700 dark:text-slate-300 transition cursor-pointer"
             >
               {viewMode === 'wheel' ? 'Switch to Grid View' : 'Switch to Wheel View'}
             </button>
@@ -135,8 +210,8 @@ export const Gallery: React.FC = () => {
             >
               {/* Outer Decorative Orbit Rings */}
               <div className="absolute inset-0 rounded-full border border-dashed border-cyan-500/20 dark:border-cyan-400/25 pointer-events-none" />
-              <div className="absolute inset-8 rounded-full border border-black/[0.04] dark:border-white/[0.04] pointer-events-none" />
-              <div className="absolute inset-20 rounded-full border border-dashed border-indigo-500/20 pointer-events-none" />
+              <div className="absolute inset-8 rounded-full border border-slate-200/40 dark:border-white/[0.04] pointer-events-none" />
+              <div className="absolute inset-20 rounded-full border border-dashed border-indigo-400/15 dark:border-indigo-500/20 pointer-events-none" />
 
               {/* ROTATING SPOKES & CARDS CONTAINER */}
               <div 
@@ -161,13 +236,14 @@ export const Gallery: React.FC = () => {
                       >
                         <div
                           onClick={() => setSelectedMoment(moment)}
-                          className="group relative -translate-x-1/2 -translate-y-1/2 w-28 sm:w-36 md:w-44 rounded-2xl p-2 sm:p-2.5 bg-white/80 dark:bg-[#080d1a]/85 backdrop-blur-xl border border-black/10 dark:border-white/10 hover:border-cyan-400 dark:hover:border-cyan-400 shadow-xl hover:shadow-[0_0_25px_rgba(56,189,248,0.4)] transition-all duration-300 cursor-pointer hover:scale-110"
+                          className="group relative -translate-x-1/2 -translate-y-1/2 w-28 sm:w-36 md:w-44 rounded-2xl p-2 sm:p-2.5 bg-white/90 dark:bg-[#080d1a]/85 backdrop-blur-xl border border-slate-200/60 dark:border-white/10 hover:border-cyan-400 dark:hover:border-cyan-400 shadow-lg dark:shadow-xl hover:shadow-[0_0_25px_rgba(56,189,248,0.3)] dark:hover:shadow-[0_0_25px_rgba(56,189,248,0.4)] transition-all duration-300 cursor-pointer hover:scale-110"
                         >
                           {/* Photo Thumbnail */}
-                          <div className="w-full aspect-[4/3] rounded-xl overflow-hidden bg-slate-800 relative mb-2">
+                          <div className="w-full aspect-[4/3] rounded-xl overflow-hidden bg-slate-200 dark:bg-slate-800 relative mb-2">
                             <img
                               src={moment.imageUrl}
                               alt={moment.title}
+                              onError={handleImageError}
                               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                               loading="lazy"
                             />
@@ -193,7 +269,7 @@ export const Gallery: React.FC = () => {
               </div>
 
               {/* CENTER HUB of the Big Wheel */}
-              <div className="relative z-20 w-36 h-36 sm:w-48 sm:h-48 rounded-full bg-white/90 dark:bg-[#060a14]/90 backdrop-blur-2xl border-2 border-cyan-500/30 dark:border-cyan-400/30 shadow-[0_0_40px_rgba(56,189,248,0.25)] flex flex-col items-center justify-center p-4 text-center">
+              <div className="relative z-20 w-36 h-36 sm:w-48 sm:h-48 rounded-full bg-white/90 dark:bg-[#060a14]/90 backdrop-blur-2xl border-2 border-cyan-400/20 dark:border-cyan-400/30 shadow-[0_0_30px_rgba(56,189,248,0.15)] dark:shadow-[0_0_40px_rgba(56,189,248,0.25)] flex flex-col items-center justify-center p-4 text-center">
                 <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-cyan-500/10 dark:bg-cyan-400/10 border border-cyan-500/30 flex items-center justify-center text-cyan-600 dark:text-cyan-400 mb-1.5 sm:mb-2 animate-pulse">
                   <Camera className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
@@ -220,12 +296,13 @@ export const Gallery: React.FC = () => {
               <div
                 key={moment.id}
                 onClick={() => setSelectedMoment(moment)}
-                className="rounded-3xl overflow-hidden bg-white/80 dark:bg-[#080d1a]/85 backdrop-blur-xl border border-black/10 dark:border-white/10 hover:border-cyan-400 shadow-xl transition-all duration-300 group cursor-pointer"
+                className="rounded-3xl overflow-hidden bg-white/90 dark:bg-[#080d1a]/85 backdrop-blur-xl border border-slate-200/60 dark:border-white/10 hover:border-cyan-400 shadow-lg dark:shadow-xl transition-all duration-300 group cursor-pointer"
               >
-                <div className="relative aspect-video overflow-hidden bg-slate-800">
+                <div className="relative aspect-video overflow-hidden bg-slate-200 dark:bg-slate-800">
                   <img
                     src={moment.imageUrl}
                     alt={moment.title}
+                    onError={handleImageError}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                   />
@@ -244,7 +321,7 @@ export const Gallery: React.FC = () => {
                     {moment.description}
                   </p>
 
-                  <div className="pt-3 border-t border-black/5 dark:border-white/5 flex items-center justify-between text-xs text-slate-500 font-mono">
+                  <div className="pt-3 border-t border-slate-200/50 dark:border-white/5 flex items-center justify-between text-xs text-slate-500 font-mono">
                     <div className="flex items-center gap-1.5">
                       <MapPin className="w-3.5 h-3.5" />
                       <span>{moment.location}</span>
@@ -267,22 +344,23 @@ export const Gallery: React.FC = () => {
             onClick={() => setSelectedMoment(null)}
           >
             <div 
-              className="relative max-w-2xl w-full rounded-3xl overflow-hidden bg-white dark:bg-[#090d16] border border-black/10 dark:border-white/10 shadow-2xl p-6 sm:p-8"
+              className="relative max-w-2xl w-full rounded-3xl overflow-hidden bg-white dark:bg-[#090d16] border border-slate-200/60 dark:border-white/10 shadow-2xl p-6 sm:p-8"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close Button */}
               <button
                 onClick={() => setSelectedMoment(null)}
-                className="absolute top-5 right-5 p-2 rounded-full bg-black/10 dark:bg-white/10 text-slate-700 dark:text-slate-300 hover:text-black dark:hover:text-white transition"
+                className="absolute top-5 right-5 p-2 rounded-full bg-slate-100 dark:bg-white/10 text-slate-700 dark:text-slate-300 hover:text-black dark:hover:text-white transition"
               >
                 <X className="w-5 h-5" />
               </button>
 
               {/* Photo Display */}
-              <div className="rounded-2xl overflow-hidden aspect-video bg-slate-900 mb-6 shadow-inner">
+              <div className="rounded-2xl overflow-hidden aspect-video bg-slate-200 dark:bg-slate-900 mb-6 shadow-inner">
                 <img
                   src={selectedMoment.imageUrl}
                   alt={selectedMoment.title}
+                  onError={handleImageError}
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -306,7 +384,7 @@ export const Gallery: React.FC = () => {
                   {selectedMoment.description}
                 </p>
 
-                <div className="pt-4 border-t border-black/5 dark:border-white/5 flex items-center gap-2 text-xs text-slate-500 font-mono">
+                <div className="pt-4 border-t border-slate-200/50 dark:border-white/5 flex items-center gap-2 text-xs text-slate-500 font-mono">
                   <MapPin className="w-4 h-4 text-cyan-500" />
                   <span>{selectedMoment.location}</span>
                 </div>

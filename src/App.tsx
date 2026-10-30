@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ThemeProvider } from './context/ThemeContext';
 import { Layout } from './components/Layout';
-import { IntroSplashScreen } from './components/IntroSplashScreen';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { About } from './components/About';
@@ -15,7 +14,6 @@ import { Footer } from './components/Footer';
 import { CommandPalette } from './components/CommandPalette';
 
 export function App() {
-  const [showIntro, setShowIntro] = useState(true);
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
 
   // Global Ctrl+K / Cmd+K keyboard shortcut listener
@@ -34,36 +32,33 @@ export function App() {
   return (
     <ThemeProvider>
       <Layout>
-    
-          {/* 1. Intro Splash Screen (matching Image 1 with <Abhinav />) */}
-        <AnimatePresence>
-          {showIntro && (
-            <IntroSplashScreen onComplete={() => setShowIntro(false)} />
-          )}
-        </AnimatePresence>
+        {/* Smooth Page Entry Animation on Load */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+          className="w-full flex flex-col flex-1"
+        >
+          <Header onOpenCommandPalette={() => setCommandPaletteOpen(true)} />
+          
+          <main className="w-full flex flex-col flex-1">
+            <Hero />
+            <About />
+            <Projects />
+            <Experience />
+            <Achievements />
+            <Gallery />
+            <Contact />
+          </main>
 
-        {/* 2. Main Page Layout (matching Image 2) */}
-        <Header onOpenCommandPalette={() => setCommandPaletteOpen(true)} />
-        
-        <main className="flex flex-col">
-          <Hero />
-          <About />
-          <Projects />
-          <Experience />
-          <Achievements />
-          <Gallery />
-          <Contact />
-        </main>
+          <Footer />
+        </motion.div>
 
-        <Footer onReplayIntro={() => setShowIntro(true)} />
-
-        {/* 3. Interactive Command Palette Modal */}
+        {/* Interactive Command Palette Modal */}
         <CommandPalette
           isOpen={commandPaletteOpen}
           onClose={() => setCommandPaletteOpen(false)}
         />
-
-        
       </Layout>
     </ThemeProvider>
   );

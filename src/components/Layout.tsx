@@ -38,7 +38,7 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
         </div>
       </div>
 
-      <div className="relative z-10 flex flex-col min-h-screen items-center">
+      <div className="relative z-10 flex flex-col min-h-screen w-full">
         {children}
       </div>
     </div>

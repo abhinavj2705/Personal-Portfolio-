@@ -6,17 +6,29 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: '#6366F1', // indigo-500
-          light: '#A5B4FC', // indigo-300
-          dark: '#4F46E5', // indigo-600
-        },
+        background: 'var(--color-bg)',
+        surface: 'var(--color-surface)',
+        raised: 'var(--color-surface-raised)',
+        ink: 'var(--color-text)',
+        muted: 'var(--color-text-muted)',
+        faint: 'var(--color-text-faint)',
+        line: 'var(--color-border)',
+        'line-strong': 'var(--color-border-strong)',
+        nav: 'var(--color-nav)',
+        backdrop: 'var(--color-backdrop)',
         accent: {
-          DEFAULT: '#8B5CF6', // violet-500
-          light: '#C4B5FD', // violet-300
-          dark: '#7C3AED', // violet-600
+          DEFAULT: 'var(--color-accent)',
+          hover: 'var(--color-accent-hover)',
+          soft: 'var(--color-accent-soft)',
+          contrast: 'var(--color-accent-contrast)',
         },
-        background: '#0A0A0A', // near‑black
+      },
+      fontFamily: {
+        display: ['"Space Grotesk"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
+      boxShadow: {
+        surface: 'var(--shadow-surface)',
       },
     },
   },

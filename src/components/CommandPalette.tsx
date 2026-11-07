@@ -1,6 +1,23 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { Search, ExternalLink, Code2, User, Award, Briefcase, Mail, Image as ImageIcon, X, FileText } from 'lucide-react';
-import { linkedInUrl, githubUrl, resumeUrl } from '../data/portfolioData';
+import { useEffect, useRef, useState } from 'react';
+import type { ReactNode } from 'react';
+import {
+  Award,
+  Briefcase,
+  Code2,
+  ExternalLink,
+  FileText,
+  Home,
+  Layers,
+  Mail,
+  Search,
+  Sparkles,
+  User,
+  Users,
+  X,
+} from 'lucide-react';
+import { sections } from '../data/nav';
+import { projectsData } from '../data/projects';
+import { profile } from '../data/profile';
 
 interface CommandPaletteProps {
   isOpen: boolean;
@@ -11,23 +28,38 @@ interface CommandItem {
   id: string;
   title: string;
   subtitle: string;
-  icon: React.ReactNode;
+  icon: ReactNode;
   category: 'Sections' | 'Projects' | 'Links';
   action: () => void;
 }
 
-export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose }) => {
+const iconClassName = 'h-4 w-4';
+
+const sectionIcons: Record<string, ReactNode> = {
+  home: <Home className={iconClassName} />,
+  about: <User className={iconClassName} />,
+  'why-me': <Sparkles className={iconClassName} />,
+  projects: <Code2 className={iconClassName} />,
+  experience: <Briefcase className={iconClassName} />,
+  skills: <Layers className={iconClassName} />,
+  achievements: <Award className={iconClassName} />,
+  communities: <Users className={iconClassName} />,
+  contact: <Mail className={iconClassName} />,
+};
+
+export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const scrollTo = (id: string) => {
     onClose();
-    setTimeout(() => {
-      const el = document.getElementById(id);
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
+    window.setTimeout(() => {
+      if (window.__lenis) {
+        window.__lenis.scrollTo(`#${id}`, { offset: -72 });
+        return;
       }
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     }, 100);
   };
 
@@ -37,54 +69,82 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
   };
 
   const commands: CommandItem[] = [
-    // Sections
-    { id: 'about', title: 'About', subtitle: 'Background, education at CHRIST University, interests', icon: <User className="w-4 h-4 text-cyan-400" />, category: 'Sections', action: () => scrollTo('about') },
-    { id: 'projects', title: 'Projects', subtitle: 'CU Now, CU Nav, Restaurant Inventory & more', icon: <Code2 className="w-4 h-4 text-cyan-400" />, category: 'Sections', action: () => scrollTo('projects') },
-    { id: 'experience', title: 'Experience & Leadership', subtitle: 'DevSoc Lead, SWO, University Culture Team', icon: <Briefcase className="w-4 h-4 text-cyan-400" />, category: 'Sections', action: () => scrollTo('experience') },
-    { id: 'achievements', title: 'Achievements & Impact', subtitle: '3,000+ active users, Azure AI credential', icon: <Award className="w-4 h-4 text-cyan-400" />, category: 'Sections', action: () => scrollTo('achievements') },
-    { id: 'gallery', title: 'Gallery', subtitle: 'Event photographs, community & campus life', icon: <ImageIcon className="w-4 h-4 text-cyan-400" />, category: 'Sections', action: () => scrollTo('gallery') },
-    { id: 'contact', title: 'Contact Info', subtitle: 'Get in touch directly or send a message', icon: <Mail className="w-4 h-4 text-cyan-400" />, category: 'Sections', action: () => scrollTo('contact') },
-
-    // Featured Projects
-    { id: 'cu-now', title: 'Project: CU Now', subtitle: 'Campus orientation app (3,000+ users)', icon: <Code2 className="w-4 h-4 text-indigo-400" />, category: 'Projects', action: () => scrollTo('projects') },
-    { id: 'cu-nav', title: 'Project: CU Nav', subtitle: 'Live guided campus map & navigation', icon: <Code2 className="w-4 h-4 text-indigo-400" />, category: 'Projects', action: () => scrollTo('projects') },
-
-    // Links
-    { id: 'resume', title: 'View Resume (Google Drive)', subtitle: 'Open Abhinav\'s resume in Google Drive', icon: <FileText className="w-4 h-4 text-cyan-400" />, category: 'Links', action: () => openLink(resumeUrl) },
-    { id: 'github', title: 'GitHub Profile', subtitle: 'abhinavj2705', icon: <ExternalLink className="w-4 h-4 text-violet-400" />, category: 'Links', action: () => openLink(githubUrl) },
-    { id: 'linkedin', title: 'LinkedIn Profile', subtitle: 'abhinav-jadhav-', icon: <ExternalLink className="w-4 h-4 text-violet-400" />, category: 'Links', action: () => openLink(linkedInUrl) },
+    ...sections.map((section) => ({
+      id: section.id,
+      title: section.label,
+      subtitle: `Jump to ${section.label}`,
+      icon: sectionIcons[section.id] ?? <Layers className={iconClassName} />,
+      category: 'Sections' as const,
+      action: () => scrollTo(section.id),
+    })),
+    ...projectsData.map((project) => ({
+      id: `project-${project.id}`,
+      title: project.title,
+      subtitle: project.tagline,
+      icon: <Code2 className={iconClassName} />,
+      category: 'Projects' as const,
+      action: () => scrollTo('projects'),
+    })),
+    {
+      id: 'resume',
+      title: 'View resume',
+      subtitle: 'Open the resume in Google Drive',
+      icon: <FileText className={iconClassName} />,
+      category: 'Links',
+      action: () => openLink(profile.resumeUrl),
+    },
+    {
+      id: 'github',
+      title: 'GitHub profile',
+      subtitle: 'abhinavj2705',
+      icon: <ExternalLink className={iconClassName} />,
+      category: 'Links',
+      action: () => openLink(profile.githubUrl),
+    },
+    {
+      id: 'linkedin',
+      title: 'LinkedIn profile',
+      subtitle: 'abhinav-jadhav',
+      icon: <ExternalLink className={iconClassName} />,
+      category: 'Links',
+      action: () => openLink(profile.linkedInUrl),
+    },
   ];
 
-  const filteredCommands = commands.filter((cmd) =>
-    cmd.title.toLowerCase().includes(query.toLowerCase()) ||
-    cmd.subtitle.toLowerCase().includes(query.toLowerCase())
+  const filteredCommands = commands.filter(
+    (command) =>
+      command.title.toLowerCase().includes(query.toLowerCase()) ||
+      command.subtitle.toLowerCase().includes(query.toLowerCase()),
   );
 
   useEffect(() => {
-    if (isOpen) {
-      setQuery('');
-      setSelectedIndex(0);
-      setTimeout(() => inputRef.current?.focus(), 50);
-    }
+    if (!isOpen) return;
+    setQuery('');
+    setSelectedIndex(0);
+    const timer = window.setTimeout(() => inputRef.current?.focus(), 50);
+    return () => window.clearTimeout(timer);
   }, [isOpen]);
 
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (!isOpen) return;
 
-      if (e.key === 'ArrowDown') {
-        e.preventDefault();
-        setSelectedIndex((prev) => (prev + 1) % (filteredCommands.length || 1));
-      } else if (e.key === 'ArrowUp') {
-        e.preventDefault();
-        setSelectedIndex((prev) => (prev - 1 + filteredCommands.length) % (filteredCommands.length || 1));
-      } else if (e.key === 'Enter') {
-        e.preventDefault();
-        if (filteredCommands[selectedIndex]) {
-          filteredCommands[selectedIndex].action();
-        }
-      } else if (e.key === 'Escape') {
-        e.preventDefault();
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        setSelectedIndex(
+          (prev) => (prev + 1) % (filteredCommands.length || 1),
+        );
+      } else if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        setSelectedIndex(
+          (prev) =>
+            (prev - 1 + filteredCommands.length) % (filteredCommands.length || 1),
+        );
+      } else if (event.key === 'Enter') {
+        event.preventDefault();
+        filteredCommands[selectedIndex]?.action();
+      } else if (event.key === 'Escape') {
+        event.preventDefault();
         onClose();
       }
     };
@@ -96,63 +156,75 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4 bg-black/75 backdrop-blur-md animate-in fade-in duration-200">
-      <div 
-        className="w-full max-w-xl bg-[#090d16] border border-white/10 rounded-2xl shadow-2xl overflow-hidden text-slate-200"
-        onClick={(e) => e.stopPropagation()}
+    <div
+      className="fixed inset-0 z-50 flex items-start justify-center bg-backdrop px-4 pt-24 backdrop-blur-md"
+      onClick={onClose}
+    >
+      <div
+        className="w-full max-w-xl overflow-hidden border border-line-strong bg-surface shadow-surface"
+        onClick={(event) => event.stopPropagation()}
       >
-        {/* Search Input Bar */}
-        <div className="flex items-center px-4 py-3.5 border-b border-white/10 gap-3">
-          <Search className="w-5 h-5 text-slate-400 shrink-0" />
+        <div className="flex items-center gap-3 border-b border-line px-4 py-3.5">
+          <Search className="h-5 w-5 shrink-0 text-faint" aria-hidden="true" />
           <input
             ref={inputRef}
             type="text"
             placeholder="Search sections, projects, or links..."
             value={query}
-            onChange={(e) => {
-              setQuery(e.target.value);
+            onChange={(event) => {
+              setQuery(event.target.value);
               setSelectedIndex(0);
             }}
-            className="w-full bg-transparent text-white placeholder-slate-500 focus:outline-none text-sm md:text-base font-normal"
+            className="w-full bg-transparent text-sm text-ink placeholder:text-faint focus:outline-none md:text-base"
           />
           <button
+            type="button"
             onClick={onClose}
-            className="p-1 rounded-md text-slate-400 hover:text-white hover:bg-white/5 transition"
+            className="p-1 text-muted transition-colors hover:text-accent"
             aria-label="Close"
           >
-            <X className="w-4 h-4" />
+            <X className="h-4 w-4" />
           </button>
         </div>
 
-        {/* Results List */}
-        <div className="max-h-80 overflow-y-auto p-2 space-y-1">
+        <div className="max-h-80 space-y-1 overflow-y-auto p-2" data-lenis-prevent>
           {filteredCommands.length === 0 ? (
-            <div className="py-8 text-center text-sm text-slate-500">
+            <div className="py-8 text-center text-sm text-faint">
               No results found for &ldquo;{query}&rdquo;
             </div>
           ) : (
-            filteredCommands.map((cmd, idx) => {
-              const isSelected = idx === selectedIndex;
+            filteredCommands.map((command, index) => {
+              const isSelected = index === selectedIndex;
               return (
                 <div
-                  key={cmd.id}
-                  onClick={() => cmd.action()}
-                  onMouseEnter={() => setSelectedIndex(idx)}
-                  className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl cursor-pointer transition ${
-                    isSelected ? 'bg-cyan-500/15 text-white border border-cyan-500/30' : 'hover:bg-white/5 text-slate-300'
+                  key={command.id}
+                  onClick={() => command.action()}
+                  onMouseEnter={() => setSelectedIndex(index)}
+                  className={`flex cursor-pointer items-center justify-between gap-3 border px-3.5 py-2.5 transition-colors ${
+                    isSelected
+                      ? 'border-accent bg-accent-soft text-ink'
+                      : 'border-transparent text-muted hover:bg-raised'
                   }`}
                 >
-                  <div className="flex items-center gap-3">
-                    <div className={`p-2 rounded-lg ${isSelected ? 'bg-cyan-500/20 text-cyan-300' : 'bg-white/5 text-slate-400'}`}>
-                      {cmd.icon}
+                  <div className="flex min-w-0 items-center gap-3">
+                    <div
+                      className={`flex h-8 w-8 shrink-0 items-center justify-center ${
+                        isSelected
+                          ? 'bg-accent text-accent-contrast'
+                          : 'bg-raised text-muted'
+                      }`}
+                    >
+                      {command.icon}
                     </div>
-                    <div>
-                      <div className="text-sm font-medium text-white">{cmd.title}</div>
-                      <div className="text-xs text-slate-400">{cmd.subtitle}</div>
+                    <div className="min-w-0">
+                      <div className="truncate text-sm font-medium text-ink">
+                        {command.title}
+                      </div>
+                      <div className="truncate text-xs text-muted">{command.subtitle}</div>
                     </div>
                   </div>
-                  <span className="text-[11px] font-mono uppercase tracking-wider text-slate-500 px-2 py-0.5 rounded bg-white/5">
-                    {cmd.category}
+                  <span className="shrink-0 border border-line px-2 py-0.5 text-[10px] uppercase tracking-[0.14em] text-faint">
+                    {command.category}
                   </span>
                 </div>
               );
@@ -160,8 +232,7 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
           )}
         </div>
 
-        {/* Footer shortcuts */}
-        <div className="px-4 py-2.5 bg-black/40 border-t border-white/5 flex items-center justify-between text-[11px] text-slate-500 font-mono">
+        <div className="flex items-center justify-between border-t border-line bg-background px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.14em] text-faint">
           <div className="flex items-center gap-2">
             <span>↑↓ Navigate</span>
             <span>↵ Select</span>
@@ -171,4 +242,4 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose 
       </div>
     </div>
   );
-};
+}

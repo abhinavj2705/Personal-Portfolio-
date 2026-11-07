@@ -1,0 +1,15 @@
+export { profile } from './profile';
+export { sections, desktopNav } from './nav';
+export type { NavSection } from './nav';
+export { projectsData } from './projects';
+export type { ProjectItem, ProjectCategory } from './projects';
+export { experienceData } from './experience';
+export type { ExperienceItem } from './experience';
+export { communitiesData } from './communities';
+export type { CommunityItem } from './communities';
+export { skillsData } from './skills';
+export type { SkillGroup } from './skills';
+export { achievementsData } from './achievements';
+export type { AchievementItem } from './achievements';
+export { whyMeData } from './whyMe';
+export type { WhyMePoint } from './whyMe';

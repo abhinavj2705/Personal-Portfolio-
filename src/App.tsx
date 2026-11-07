@@ -1,27 +1,30 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { ThemeProvider } from './context/ThemeContext';
-import { Layout } from './components/Layout';
-import { Header } from './components/Header';
-import { Hero } from './components/Hero';
-import { About } from './components/About';
-import { Projects } from './components/Projects';
-import { Experience } from './components/Experience';
-import { Achievements } from './components/Achievements';
-import { Gallery } from './components/Gallery';
-import { Contact } from './components/Contact';
-import { Footer } from './components/Footer';
+import { useEffect, useState } from 'react';
 import { CommandPalette } from './components/CommandPalette';
+import { useLenisScroll } from './hooks/useLenisScroll';
+import { Footer } from './layout/Footer';
+import { Header } from './layout/Header';
+import { Layout } from './layout/Layout';
+import { About } from './sections/About';
+import { Achievements } from './sections/Achievements';
+import { Communities } from './sections/Communities';
+import { Contact } from './sections/Contact';
+import { Experience } from './sections/Experience';
+import { Home } from './sections/Home';
+import { Projects } from './sections/Projects';
+import { Skills } from './sections/Skills';
+import { WhyMe } from './sections/WhyMe';
+import { ThemeProvider } from './theme/ThemeContext';
 
 export function App() {
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
 
-  // Global Ctrl+K / Cmd+K keyboard shortcut listener
+  useLenisScroll();
+
   useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault();
-        setCommandPaletteOpen((prev) => !prev);
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') {
+        event.preventDefault();
+        setCommandPaletteOpen((open) => !open);
       }
     };
 
@@ -32,29 +35,29 @@ export function App() {
   return (
     <ThemeProvider>
       <Layout>
-        {/* Smooth Page Entry Animation on Load */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-          className="w-full flex flex-col flex-1"
+        <a
+          href="#home"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:border focus:border-accent focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:text-ink"
         >
-          <Header onOpenCommandPalette={() => setCommandPaletteOpen(true)} />
-          
-          <main className="w-full flex flex-col flex-1">
-            <Hero />
-            <About />
-            <Projects />
-            <Experience />
-            <Achievements />
-            <Gallery />
-            <Contact />
-          </main>
+          Skip to content
+        </a>
 
-          <Footer />
-        </motion.div>
+        <Header onOpenCommandPalette={() => setCommandPaletteOpen(true)} />
 
-        {/* Interactive Command Palette Modal */}
+        <main className="flex-1">
+          <Home />
+          <About />
+          <WhyMe />
+          <Projects />
+          <Experience />
+          <Skills />
+          <Achievements />
+          <Communities />
+          <Contact />
+        </main>
+
+        <Footer />
+
         <CommandPalette
           isOpen={commandPaletteOpen}
           onClose={() => setCommandPaletteOpen(false)}

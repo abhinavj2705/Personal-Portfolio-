@@ -14,7 +14,7 @@ export function SectionHeader({
   className = '',
 }: SectionHeaderProps) {
   return (
-    <header className={`mb-12 max-w-3xl md:mb-16 ${className}`}>
+    <header className={`mb-8 max-w-3xl md:mb-10 ${className}`}>
       <div className="flex items-center gap-3 text-muted">
         <span className="font-mono text-[11px] tracking-[0.24em] text-accent">{index}</span>
         <span className="h-px w-10 bg-accent" aria-hidden="true" />

@@ -14,14 +14,6 @@ export function Portrait({ className = '' }: { className?: string }) {
           className="h-full w-full object-cover object-[center_22%]"
           loading="eager"
         />
-        <div className="portrait-shade absolute inset-0" aria-hidden="true" />
-        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5">
-          <div>
-            <p className="eyebrow text-accent">Portrait</p>
-            <p className="mt-1 font-display text-sm text-ink">{profile.name}</p>
-          </div>
-          <p className="text-[10px] uppercase tracking-[0.18em] text-muted">{profile.location}</p>
-        </div>
       </div>
     </div>
   );

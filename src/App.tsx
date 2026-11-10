@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { CommandPalette } from './components/CommandPalette';
 import { useLenisScroll } from './hooks/useLenisScroll';
+import { BottomNav } from './layout/BottomNav';
 import { Footer } from './layout/Footer';
 import { Header } from './layout/Header';
 import { Layout } from './layout/Layout';
@@ -57,6 +58,8 @@ export function App() {
         </main>
 
         <Footer />
+
+        <BottomNav />
 
         <CommandPalette
           isOpen={commandPaletteOpen}

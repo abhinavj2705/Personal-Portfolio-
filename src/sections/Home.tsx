@@ -12,7 +12,7 @@ const fadeUp = {
 export function Home() {
   return (
     <section id="home" className="relative">
-      <div className="container-editorial flex min-h-screen flex-col justify-center pb-16 pt-28 sm:pt-32 lg:pt-36">
+      <div className="container-editorial flex min-h-svh flex-col justify-center pb-16 pt-28 sm:pt-32 lg:pt-36">
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-10">
           <motion.div
             className="lg:col-span-7"
@@ -110,10 +110,6 @@ export function Home() {
             transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
           >
             <Portrait />
-            <div className="mt-6 flex items-center justify-between border-t border-line pt-4 text-[10px] uppercase tracking-[0.18em] text-faint">
-              <span>{profile.location}</span>
-              <span>{profile.graduation}</span>
-            </div>
           </motion.div>
         </div>
 

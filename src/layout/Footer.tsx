@@ -16,7 +16,7 @@ const scrollToTop = () => {
 
 export function Footer() {
   return (
-    <footer className="border-t border-line py-12">
+    <footer className="border-t border-line pb-28 pt-12 md:pb-12">
       <div className="container-editorial">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
@@ -84,7 +84,6 @@ export function Footer() {
           <span>
             © {currentYear} {profile.name}. All rights reserved.
           </span>
-          <span>Designed &amp; built with React and TypeScript</span>
         </div>
       </div>
     </footer>

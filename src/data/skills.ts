@@ -24,4 +24,8 @@ export const skillsData: SkillGroup[] = [
     title: 'IoT & Embedded',
     items: ['Arduino / ESP32', 'MQTT Protocol', 'Sensor Integration', 'Hardware Telemetry', 'Node-RED'],
   },
+  {
+    title: 'DevOps & Tooling',
+    items: ['Docker', 'GitHub Actions', 'Linux / Shell', 'Postman', 'Figma'],
+  },
 ];

@@ -5,9 +5,10 @@ export const profile = {
   role: 'Full-Stack Developer',
   secondaryRole: 'IoT Systems Architect',
   location: 'Bengaluru, India',
+  email: 'abhinavjadhav27005@gmail.com',
   university: 'CHRIST University',
-  degree: 'B.Tech CSE (IoT)',
-  graduation: 'Expected 2027',
+  degree: 'B.Tech in Computer Science & Engineering (IoT)',
+  graduation: 'Expected 2029',
   portrait: '/Abhi.png',
   summary:
     'I build resilient web platforms, embedded IoT pipelines, and product experiences that hold up in the real world.',

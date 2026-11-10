@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import type { ChangeEvent, FormEvent } from 'react';
-import { AlertCircle, CheckCircle, FileText, MapPin, Send } from 'lucide-react';
+import { AlertCircle, CheckCircle, FileText, Mail, MapPin, Send } from 'lucide-react';
 import { ArrowLink } from '../components/ui/ArrowLink';
 import { SectionHeader } from '../components/ui/SectionHeader';
 import { GithubIcon, LinkedinIcon } from '../components/SocialIcons';
@@ -71,6 +71,19 @@ export function Contact() {
         <div className="grid items-start gap-8 lg:grid-cols-12">
           <div className="space-y-3 lg:col-span-5">
             <a
+              href={`mailto:${profile.email}`}
+              className="flex items-center gap-4 border border-line p-4 transition-colors hover:border-accent"
+            >
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center border border-line text-accent">
+                <Mail className="h-5 w-5" />
+              </span>
+              <span className="min-w-0">
+                <span className="eyebrow block text-faint">Email</span>
+                <span className="mt-1 block truncate text-sm text-ink">{profile.email}</span>
+              </span>
+            </a>
+
+            <a
               href={profile.linkedInUrl}
               target="_blank"
               rel="noopener noreferrer"
@@ -125,10 +138,6 @@ export function Contact() {
               </span>
             </div>
 
-            <div className="border border-line p-5">
-              <p className="eyebrow text-accent">Availability</p>
-              <p className="mt-2 text-sm leading-relaxed text-muted">{profile.availability}.</p>
-            </div>
           </div>
 
           <form
@@ -153,7 +162,7 @@ export function Contact() {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Your name"
-                  className="w-full border border-line bg-background px-4 py-3 text-sm text-ink placeholder:text-faint transition-colors focus:border-accent focus:outline-none"
+                  className="w-full border border-line bg-transparent px-4 py-3 text-sm text-ink placeholder:text-faint transition-colors focus:border-accent focus:outline-none"
                 />
               </div>
 
@@ -172,7 +181,7 @@ export function Contact() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="name@example.com"
-                  className="w-full border border-line bg-background px-4 py-3 text-sm text-ink placeholder:text-faint transition-colors focus:border-accent focus:outline-none"
+                  className="w-full border border-line bg-transparent px-4 py-3 text-sm text-ink placeholder:text-faint transition-colors focus:border-accent focus:outline-none"
                 />
               </div>
             </div>
@@ -191,7 +200,7 @@ export function Contact() {
                 value={formData.subject}
                 onChange={handleChange}
                 placeholder="Role, collaboration, or project inquiry"
-                className="w-full border border-line bg-background px-4 py-3 text-sm text-ink placeholder:text-faint transition-colors focus:border-accent focus:outline-none"
+                className="w-full border border-line bg-transparent px-4 py-3 text-sm text-ink placeholder:text-faint transition-colors focus:border-accent focus:outline-none"
               />
             </div>
 
@@ -210,7 +219,7 @@ export function Contact() {
                 value={formData.message}
                 onChange={handleChange}
                 placeholder="How can we build together?"
-                className="w-full resize-none border border-line bg-background px-4 py-3 text-sm text-ink placeholder:text-faint transition-colors focus:border-accent focus:outline-none"
+                className="w-full resize-none border border-line bg-transparent px-4 py-3 text-sm text-ink placeholder:text-faint transition-colors focus:border-accent focus:outline-none"
               />
             </div>
 

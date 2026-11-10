@@ -23,10 +23,10 @@ export const achievementsData: AchievementItem[] = [
     note: 'Microsoft verified credential',
   },
   {
-    title: 'B.Tech in CSE (IoT)',
+    title: 'B.Tech in Computer Science & Engineering (IoT)',
     subtitle: 'CHRIST University, Bengaluru',
     description:
       'Specialized coursework in microcontrollers, cloud computing, edge intelligence, embedded systems, and software engineering.',
-    note: 'Expected graduation 2027',
+    note: 'Expected graduation 2029',
   },
 ];

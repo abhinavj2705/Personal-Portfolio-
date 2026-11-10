@@ -34,20 +34,22 @@ export function About() {
 
           <div className="lg:col-span-8">
             <p className="font-display text-2xl leading-snug tracking-tight text-ink sm:text-3xl">
-              I work at the intersection of full-stack product engineering and connected systems —
-              building software that is useful, durable, and clear.
+              I turn ideas into products that make a real difference — building full-stack systems
+              and connected technologies with a focus on what is practical and useful.
             </p>
 
             <div className="mt-8 grid gap-6 sm:grid-cols-2">
               <p className="text-sm leading-relaxed text-muted sm:text-base">
-                I am pursuing my B.Tech in Computer Science and Engineering (IoT) at CHRIST
-                University, Bengaluru. My focus spans modern web applications and embedded devices,
-                with an emphasis on systems that solve tangible everyday problems.
+                I am pursuing a B.Tech in Computer Science and Engineering (IoT) at CHRIST
+                University, Bengaluru, where I explore the intersection of software, hardware, and
+                emerging technology.
               </p>
               <p className="text-sm leading-relaxed text-muted sm:text-base">
-                That philosophy drove me to build CU Now, a campus orientation platform used by
-                more than 3,000 students. Beyond engineering, I lead and contribute to technical
-                and cultural communities across the university.
+                My work on <span className="font-medium text-ink">CU Now</span>, a campus
+                orientation app used by more than 3,000 students, shaped how I approach
+                engineering: solve real problems, build with purpose, and create things people
+                actually use. Beyond code, I am active in community building and have led several
+                initiatives.
               </p>
             </div>
 

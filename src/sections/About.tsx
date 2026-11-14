@@ -34,22 +34,33 @@ export function About() {
 
           <div className="lg:col-span-8">
             <p className="font-display text-2xl leading-snug tracking-tight text-ink sm:text-3xl">
-              I turn ideas into products that make a real difference — building full-stack systems
-              and connected technologies with a focus on what is practical and useful.
+              I am a Computer Science and Engineering (IoT) undergraduate at CHRIST University,
+              Bengaluru, passionate about building technologies, innovating and implementing my
+              ideas in order to create something that has tangible value.
             </p>
 
-            <div className="mt-8 grid gap-6 sm:grid-cols-2">
+            <div className="mt-8 space-y-5">
               <p className="text-sm leading-relaxed text-muted sm:text-base">
-                I am pursuing a B.Tech in Computer Science and Engineering (IoT) at CHRIST
-                University, Bengaluru, where I explore the intersection of software, hardware, and
-                emerging technology.
+                I am interested in various areas of technology and innovation, including
+                full-stack development, software engineering, IoT, and connected systems. It's
+                fascinating to me to understand how things function, explore new technologies and
+                tools and to build innovative and impactful products through these processes.
               </p>
               <p className="text-sm leading-relaxed text-muted sm:text-base">
-                My work on <span className="font-medium text-ink">CU Now</span>, a campus
-                orientation app used by more than 3,000 students, shaped how I approach
-                engineering: solve real problems, build with purpose, and create things people
-                actually use. Beyond code, I am active in community building and have led several
-                initiatives.
+                In addition to the technical aspects, I am actively participating in student
+                communities and organizations where I was able to take up various responsibilities,
+                collaborate with teams, organize initiatives, and participate in community-building
+                processes within the realm of technology.
+              </p>
+              <p className="text-sm leading-relaxed text-muted sm:text-base">
+                At the same time, I am very interested in the business and product aspects of
+                technologies – in other words, in understanding not only how certain solutions or
+                products are created, but why they are needed, for whom, and how they should be
+                developed and expanded.
+              </p>
+              <p className="text-sm leading-relaxed text-muted sm:text-base">
+                I am a constant learner, a builder, and an explorer of new opportunities, and I
+                would not want to confine myself only to one area.
               </p>
             </div>
 

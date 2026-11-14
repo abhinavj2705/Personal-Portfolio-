@@ -1,31 +1,38 @@
-export interface SkillGroup {
-  title: string;
-  items: string[];
+export interface PrimarySkill {
+  name: string;
+  icons: string[];
 }
 
-export const skillsData: SkillGroup[] = [
-  {
-    title: 'Languages',
-    items: ['JavaScript (ES6+)', 'TypeScript', 'Python', 'C / C++', 'SQL', 'HTML5 / CSS3'],
-  },
-  {
-    title: 'Frontend',
-    items: ['React', 'Next.js', 'Vite', 'Tailwind CSS', 'Framer Motion', 'Responsive UI/UX'],
-  },
-  {
-    title: 'Backend & APIs',
-    items: ['Node.js', 'Express.js', 'RESTful APIs', 'Authentication (JWT)', 'Microservices'],
-  },
-  {
-    title: 'Databases & Cloud',
-    items: ['MongoDB', 'PostgreSQL', 'Firebase', 'Azure AI Fundamentals', 'Git / GitHub'],
-  },
-  {
-    title: 'IoT & Embedded',
-    items: ['Arduino / ESP32', 'MQTT Protocol', 'Sensor Integration', 'Hardware Telemetry', 'Node-RED'],
-  },
-  {
-    title: 'DevOps & Tooling',
-    items: ['Docker', 'GitHub Actions', 'Linux / Shell', 'Postman', 'Figma'],
-  },
+export const primarySkills: PrimarySkill[] = [
+  { name: 'JavaScript', icons: ['javascript'] },
+  { name: 'TypeScript', icons: ['typescript'] },
+  { name: 'Python', icons: ['python'] },
+  { name: 'C++', icons: ['cplusplus'] },
+  { name: 'React', icons: ['react'] },
+  { name: 'Next.js', icons: ['nextdotjs'] },
+  { name: 'Node.js', icons: ['nodedotjs'] },
+  { name: 'Express.js', icons: ['express'] },
+  { name: 'PostgreSQL', icons: ['postgresql'] },
+  { name: 'MongoDB', icons: ['mongodb'] },
+  { name: 'Docker', icons: ['docker'] },
+  { name: 'Git & GitHub', icons: ['git', 'github'] },
+  { name: 'Arduino / ESP32', icons: ['arduino', 'espressif'] },
+  { name: 'MQTT', icons: ['mqtt'] },
+];
+
+export const additionalSkills: string[] = [
+  'HTML5',
+  'CSS3',
+  'Vite',
+  'Tailwind CSS',
+  'Framer Motion',
+  'REST APIs',
+  'JWT Authentication',
+  'Firebase',
+  'Node-RED',
+  'GitHub Actions',
+  'Linux',
+  'Postman',
+  'Figma',
+  'SQL',
 ];

@@ -12,6 +12,7 @@ import {
   Users,
 } from 'lucide-react';
 import { sections } from '../data/nav';
+import { scrollToTarget } from '../utils/scroll';
 
 const iconMap: Record<string, typeof Home> = {
   home: Home,
@@ -23,15 +24,6 @@ const iconMap: Record<string, typeof Home> = {
   achievements: Trophy,
   communities: Users,
   contact: Mail,
-};
-
-const scrollToSection = (id: string) => {
-  const href = `#${id}`;
-  if (window.__lenis) {
-    window.__lenis.scrollTo(href, { offset: -72 });
-    return;
-  }
-  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
 };
 
 export function BottomNav() {
@@ -73,7 +65,7 @@ export function BottomNav() {
   const handleNav = (event: MouseEvent<HTMLAnchorElement>, id: string) => {
     event.preventDefault();
     setActiveId(id);
-    scrollToSection(id);
+    scrollToTarget(`#${id}`);
   };
 
   return (
@@ -81,7 +73,8 @@ export function BottomNav() {
       <nav
         ref={listRef}
         aria-label="Section navigation"
-        className="pointer-events-auto flex max-w-[calc(100vw-2rem)] items-center gap-1 overflow-x-auto rounded-full border p-1.5 shadow-[var(--nav-pill-shadow)] backdrop-blur-xl backdrop-saturate-150 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        data-lenis-prevent
+        className="pointer-events-auto relative flex max-w-[calc(100vw-2rem)] items-center gap-1 overflow-x-auto rounded-full border p-1.5 shadow-[var(--nav-pill-shadow)] backdrop-blur-xl backdrop-saturate-150 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         style={{
           backgroundColor: 'var(--nav-pill-bg)',
           borderColor: 'var(--nav-pill-border)',

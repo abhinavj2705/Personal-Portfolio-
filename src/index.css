@@ -7,16 +7,17 @@ html.dark {
   --color-bg: #090909;
   --color-surface: #141414;
   --color-surface-raised: #1b1b1b;
-  --color-text: #d8d8d8;
-  --color-text-muted: #9b9b9b;
-  --color-text-faint: #6e6e6e;
-  --color-border: rgba(216, 216, 216, 0.12);
-  --color-border-strong: rgba(216, 216, 216, 0.24);
+  --color-text: #e8e8e8;
+  --color-text-muted: #b8b8b8;
+  --color-text-faint: #959595;
+  --color-border: rgba(216, 216, 216, 0.14);
+  --color-border-strong: rgba(216, 216, 216, 0.26);
   --color-accent: #d9a441;
   --color-accent-hover: #e6b65a;
   --color-accent-soft: rgba(217, 164, 65, 0.1);
   --color-accent-contrast: #090909;
-  --color-grid: rgba(216, 216, 216, 0.05);
+  --color-grid: rgba(216, 216, 216, 0.095);
+  --color-glow: rgba(217, 164, 65, 0.08);
   --color-selection: rgba(217, 164, 65, 0.28);
   --color-nav: rgba(9, 9, 9, 0.6);
   --color-backdrop: rgba(9, 9, 9, 0.76);
@@ -41,16 +42,17 @@ html:not(.dark) {
   --color-surface: #ffffff;
   --color-surface-raised: #ffffff;
   --color-text: #191919;
-  --color-text-muted: #5f5b54;
-  --color-text-faint: #8a857c;
-  --color-border: rgba(25, 25, 25, 0.12);
-  --color-border-strong: rgba(25, 25, 25, 0.26);
-  --color-accent: #a97825;
-  --color-accent-hover: #8c611c;
-  --color-accent-soft: rgba(169, 120, 37, 0.09);
-  --color-accent-contrast: #f5f4f0;
-  --color-grid: rgba(25, 25, 25, 0.06);
-  --color-selection: rgba(169, 120, 37, 0.2);
+  --color-text-muted: #4b4740;
+  --color-text-faint: #6b665e;
+  --color-border: rgba(25, 25, 25, 0.18);
+  --color-border-strong: rgba(25, 25, 25, 0.32);
+  --color-accent: #8a5f1b;
+  --color-accent-hover: #714d14;
+  --color-accent-soft: rgba(138, 95, 27, 0.1);
+  --color-accent-contrast: #fffaf0;
+  --color-grid: rgba(25, 25, 25, 0.11);
+  --color-glow: rgba(138, 95, 27, 0.035);
+  --color-selection: rgba(138, 95, 27, 0.2);
   --color-nav: rgba(245, 244, 240, 0.72);
   --color-backdrop: rgba(25, 25, 25, 0.45);
   --shadow-surface: 0 24px 60px -40px rgba(25, 25, 25, 0.3);
@@ -134,7 +136,7 @@ section[id] {
   }
 
   .section-block {
-    @apply relative border-t border-line py-14 sm:py-16 lg:py-20;
+    @apply relative border-t border-line py-8 sm:py-10 lg:py-12;
   }
 
   .glass-panel {
@@ -149,11 +151,16 @@ section[id] {
 
 .grid-overlay {
   background-image:
+    radial-gradient(ellipse 70% 45% at 50% 0%, var(--color-glow), transparent 70%),
     linear-gradient(to right, var(--color-grid) 1px, transparent 1px),
     linear-gradient(to bottom, var(--color-grid) 1px, transparent 1px);
-  background-size: var(--grid-size) var(--grid-size);
-  -webkit-mask-image: radial-gradient(ellipse 90% 72% at 50% 0%, black 45%, transparent 100%);
-  mask-image: radial-gradient(ellipse 90% 72% at 50% 0%, black 45%, transparent 100%);
+  background-size:
+    100% 100%,
+    var(--grid-size) var(--grid-size),
+    var(--grid-size) var(--grid-size);
+  background-repeat: no-repeat, repeat, repeat;
+  -webkit-mask-image: radial-gradient(ellipse 120% 100% at 50% 0%, black 45%, transparent 100%);
+  mask-image: radial-gradient(ellipse 120% 100% at 50% 0%, black 45%, transparent 100%);
 }
 
 .portrait-shade {

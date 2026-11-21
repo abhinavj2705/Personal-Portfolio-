@@ -15,7 +15,3 @@ export const sections: NavSection[] = [
   { id: 'communities', label: 'Communities', index: '07' },
   { id: 'contact', label: 'Contact', index: '08' },
 ];
-
-const desktopNavIds = ['about', 'projects', 'experience', 'communities', 'contact'];
-
-export const desktopNav = sections.filter((section) => desktopNavIds.includes(section.id));

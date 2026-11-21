@@ -1,21 +1,10 @@
 import { useEffect } from 'react';
 import Lenis from 'lenis';
-
-declare global {
-  interface Window {
-    __lenis?: Lenis;
-  }
-}
-
-const getHeaderOffset = () => {
-  const raw = getComputedStyle(document.documentElement).getPropertyValue('--header-height');
-  const parsed = Number.parseInt(raw, 10);
-  return Number.isFinite(parsed) ? -parsed : -72;
-};
+import { prefersReducedMotion, scrollToTarget } from '../utils/scroll';
 
 export const useLenisScroll = () => {
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    if (prefersReducedMotion()) {
       return;
     }
 
@@ -39,8 +28,11 @@ export const useLenisScroll = () => {
     frame = requestAnimationFrame(raf);
 
     const handleAnchorClick = (event: MouseEvent) => {
-      const target = event.target as HTMLElement | null;
-      const anchor = target?.closest('a');
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) {
+        return;
+      }
+
+      const anchor = (event.target as HTMLElement | null)?.closest('a');
       if (!anchor || anchor.target === '_blank') return;
 
       const href = anchor.getAttribute('href');
@@ -48,15 +40,15 @@ export const useLenisScroll = () => {
 
       if (href === '#home' || href === '#top') {
         event.preventDefault();
-        lenis.scrollTo(0);
+        scrollToTarget(0);
         return;
       }
 
-      const element = document.querySelector(href);
-      if (element) {
-        event.preventDefault();
-        lenis.scrollTo(element as HTMLElement, { offset: getHeaderOffset() });
-      }
+      const id = href.startsWith('#') ? href.slice(1) : href;
+      if (!document.getElementById(id)) return;
+
+      event.preventDefault();
+      scrollToTarget(href);
     };
 
     document.addEventListener('click', handleAnchorClick);

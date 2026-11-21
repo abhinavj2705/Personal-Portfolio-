@@ -4,8 +4,8 @@ import { Tag } from './Tag';
 
 export function ProjectCard({ project, index }: { project: ProjectItem; index: number }) {
   return (
-    <article className="group border-t border-line py-10 lg:py-12">
-      <div className="grid gap-8 lg:grid-cols-12">
+    <article className="group border-t border-line py-7 lg:py-9">
+      <div className="grid gap-6 lg:grid-cols-12">
         <div className="lg:col-span-2">
           <p className="font-mono text-[11px] tracking-[0.24em] text-accent">
             {String(index).padStart(2, '0')}
@@ -24,7 +24,7 @@ export function ProjectCard({ project, index }: { project: ProjectItem; index: n
           </h3>
           <p className="mt-2 text-sm text-muted sm:text-base">{project.tagline}</p>
 
-          <dl className="mt-6 grid gap-4 sm:grid-cols-2">
+          <dl className="mt-4 grid gap-4 sm:grid-cols-2">
             <div>
               <dt className="eyebrow text-accent">Problem</dt>
               <dd className="mt-2 text-sm leading-relaxed text-muted">{project.problemSolved}</dd>
@@ -35,7 +35,7 @@ export function ProjectCard({ project, index }: { project: ProjectItem; index: n
             </div>
           </dl>
 
-          <div className="mt-6 flex flex-wrap gap-2">
+          <div className="mt-4 flex flex-wrap gap-2">
             {project.technologies.map((tech) => (
               <Tag key={tech}>{tech}</Tag>
             ))}
@@ -51,7 +51,7 @@ export function ProjectCard({ project, index }: { project: ProjectItem; index: n
                 rel="noopener noreferrer"
                 variant="outline"
               >
-                Source
+                GitHub
               </ArrowLink>
             ) : null}
             {project.demoUrl ? (

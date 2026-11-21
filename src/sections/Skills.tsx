@@ -17,7 +17,7 @@ export function Skills() {
           {primarySkills.map((skill) => (
             <div
               key={skill.name}
-              className="group relative flex flex-col items-center justify-center gap-4 border border-line bg-surface px-4 py-7 text-center transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:bg-accent-soft hover:shadow-surface"
+              className="group relative flex flex-col items-center justify-center gap-3 border border-line bg-surface px-4 py-6 text-center transition-all duration-300 hover:-translate-y-1 hover:border-accent hover:bg-accent-soft hover:shadow-surface"
             >
               <div className="flex items-center gap-2 text-ink transition-colors duration-300 group-hover:text-accent">
                 {skill.icons.map((icon) => (
@@ -29,7 +29,7 @@ export function Skills() {
           ))}
         </div>
 
-        <div className="mt-10 border border-line bg-surface p-6 sm:mt-12 sm:p-8">
+        <div className="mt-8 border border-line bg-surface p-6 sm:mt-10 sm:p-7">
           <div className="flex items-center gap-3">
             <span className="eyebrow text-muted">Also Familiar With</span>
             <span className="h-px flex-1 bg-line" aria-hidden="true" />

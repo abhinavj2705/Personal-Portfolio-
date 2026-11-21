@@ -1,5 +1,5 @@
 export { profile } from './profile';
-export { sections, desktopNav } from './nav';
+export { sections } from './nav';
 export type { NavSection } from './nav';
 export { projectsData } from './projects';
 export type { ProjectItem, ProjectCategory } from './projects';

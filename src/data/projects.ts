@@ -63,7 +63,7 @@ export const projectsData: ProjectItem[] = [
     problemSolved:
       'Replaced error-prone paper logs and manual stock registers with instant barcode logging and automatic threshold warnings.',
     contribution:
-      'Engineered cross-platform mobile interface, implemented offline caching, and created automated re-order reporting.',
+      'Engineered a cross-platform mobile interface, implemented offline caching, and created automated reorder reporting.',
     technologies: ['React Native', 'TypeScript', 'Firebase', 'Tailwind CSS'],
     githubUrl: 'https://github.com/abhinavj2705',
   },
@@ -84,7 +84,7 @@ export const projectsData: ProjectItem[] = [
   {
     id: 'devsoc-website',
     title: 'DevSoc Website',
-    tagline: 'Official platform for the Development Society',
+    tagline: 'Official platform for the Developer Society',
     category: 'Web Platform',
     purpose:
       'Showcase developer community initiatives, hackathons, member project portfolios, and recruitment portals.',

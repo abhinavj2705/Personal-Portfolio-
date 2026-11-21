@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { MotionConfig } from 'framer-motion';
 import { CommandPalette } from './components/CommandPalette';
 import { useLenisScroll } from './hooks/useLenisScroll';
 import { BottomNav } from './layout/BottomNav';
@@ -15,6 +16,7 @@ import { Projects } from './sections/Projects';
 import { Skills } from './sections/Skills';
 import { WhyMe } from './sections/WhyMe';
 import { ThemeProvider } from './theme/ThemeContext';
+import { scrollToTarget } from './utils/scroll';
 
 export function App() {
   const [commandPaletteOpen, setCommandPaletteOpen] = useState(false);
@@ -35,37 +37,49 @@ export function App() {
 
   return (
     <ThemeProvider>
-      <Layout>
-        <a
-          href="#home"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:border focus:border-accent focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:text-ink"
-        >
-          Skip to content
-        </a>
+      <MotionConfig reducedMotion="user">
+        <Layout>
+          <a
+            href="#main-content"
+            onClick={(event) => {
+              event.preventDefault();
+              scrollToTarget(0);
+              document.getElementById('main-content')?.focus({ preventScroll: true });
+            }}
+            className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:border focus:border-accent focus:bg-background focus:px-4 focus:py-2 focus:text-sm focus:text-ink"
+          >
+            Skip to content
+          </a>
 
-        <Header onOpenCommandPalette={() => setCommandPaletteOpen(true)} />
+          <Header
+            onOpenCommandPalette={() => setCommandPaletteOpen(true)}
+            isCommandPaletteOpen={commandPaletteOpen}
+          />
 
-        <main className="flex-1">
-          <Home />
-          <About />
-          <WhyMe />
-          <Projects />
-          <Experience />
-          <Skills />
-          <Achievements />
-          <Communities />
-          <Contact />
-        </main>
+          <main id="main-content" tabIndex={-1} className="flex-1 focus:outline-none">
+            <Home />
+            <About />
+            <WhyMe />
+            <Projects />
+            <Experience />
+            <Skills />
+            <Achievements />
+            <Communities />
+            <Contact />
+          </main>
 
-        <Footer />
+          <Footer />
 
-        <BottomNav />
+          <BottomNav />
 
-        <CommandPalette
-          isOpen={commandPaletteOpen}
-          onClose={() => setCommandPaletteOpen(false)}
-        />
-      </Layout>
+          {commandPaletteOpen ? (
+            <CommandPalette
+              isOpen
+              onClose={() => setCommandPaletteOpen(false)}
+            />
+          ) : null}
+        </Layout>
+      </MotionConfig>
     </ThemeProvider>
   );
 }

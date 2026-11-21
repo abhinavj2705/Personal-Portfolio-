@@ -1,23 +1,18 @@
 import { useEffect, useState } from 'react';
-import { Moon, Sun } from 'lucide-react';
+import { Moon, Search, Sun } from 'lucide-react';
 import { Logo } from '../components/Logo';
-import { useTheme } from '../theme/ThemeContext';
+import { useTheme } from '../theme/useTheme';
 import { profile } from '../data/profile';
+import { scrollToTarget } from '../utils/scroll';
 
 interface HeaderProps {
   onOpenCommandPalette: () => void;
+  isCommandPaletteOpen: boolean;
 }
 
-const scrollToSection = (href: string) => {
-  if (window.__lenis) {
-    window.__lenis.scrollTo(href, { offset: -72 });
-    return;
-  }
-  const element = document.querySelector(href);
-  element?.scrollIntoView({ behavior: 'smooth' });
-};
+const shortcutLabel = /Mac|iPhone|iPad/.test(navigator.userAgent) ? '⌘K' : 'Ctrl K';
 
-export function Header({ onOpenCommandPalette }: HeaderProps) {
+export function Header({ onOpenCommandPalette, isCommandPaletteOpen }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
@@ -39,7 +34,7 @@ export function Header({ onOpenCommandPalette }: HeaderProps) {
           href="#home"
           onClick={(event) => {
             event.preventDefault();
-            scrollToSection('#home');
+            scrollToTarget(0);
           }}
           className="group flex items-center gap-3"
           aria-label={`${profile.name} — home`}
@@ -63,10 +58,13 @@ export function Header({ onOpenCommandPalette }: HeaderProps) {
           <button
             type="button"
             onClick={onOpenCommandPalette}
-            className="hidden h-9 items-center gap-2 border border-line px-3 font-mono text-[11px] text-muted transition-colors hover:border-accent hover:text-accent sm:flex"
+            className="flex h-9 items-center gap-2 border border-line px-2.5 font-mono text-[11px] text-muted transition-colors hover:border-accent hover:text-accent sm:px-3"
             aria-label="Open command palette"
+            aria-expanded={isCommandPaletteOpen}
+            aria-controls="command-palette"
           >
-            <span>⌘K</span>
+            <Search className="h-4 w-4 sm:hidden" aria-hidden="true" />
+            <span className="hidden sm:inline">{shortcutLabel}</span>
           </button>
         </div>
       </div>

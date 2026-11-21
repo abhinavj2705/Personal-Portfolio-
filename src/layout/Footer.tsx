@@ -3,20 +3,13 @@ import { Logo } from '../components/Logo';
 import { GithubIcon, LinkedinIcon } from '../components/SocialIcons';
 import { sections } from '../data/nav';
 import { profile } from '../data/profile';
+import { scrollToTarget } from '../utils/scroll';
 
 const currentYear = new Date().getFullYear();
 
-const scrollToTop = () => {
-  if (window.__lenis) {
-    window.__lenis.scrollTo(0);
-    return;
-  }
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-};
-
 export function Footer() {
   return (
-    <footer className="border-t border-line pb-28 pt-12 md:pb-12">
+    <footer className="border-t border-line pb-28 pt-10 md:pb-10">
       <div className="container-editorial">
         <div className="grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5">
@@ -71,7 +64,7 @@ export function Footer() {
             </div>
             <button
               type="button"
-              onClick={scrollToTop}
+              onClick={() => scrollToTarget(0)}
               className="mt-4 inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.18em] text-muted transition-colors hover:text-accent"
             >
               Back to top

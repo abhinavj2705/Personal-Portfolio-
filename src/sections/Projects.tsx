@@ -33,7 +33,7 @@ export function Projects() {
           description="Real systems built for tangible impact — from university-wide platforms to embedded IoT devices."
         />
 
-        <div className="mb-10 flex flex-wrap gap-x-5 gap-y-2" role="group" aria-label="Filter projects">
+        <div className="mb-7 flex flex-wrap gap-x-5 gap-y-2" role="group" aria-label="Filter projects">
           {filters.map((filter) => (
             <button
               key={filter}

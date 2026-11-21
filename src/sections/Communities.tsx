@@ -14,7 +14,7 @@ export function Communities() {
 
         <div className="grid gap-px border border-line bg-line md:grid-cols-3">
           {communitiesData.map((community) => (
-            <article key={community.organization} className="bg-surface p-7">
+            <article key={community.organization} className="bg-surface p-6">
               <p className="eyebrow text-accent">{community.tag}</p>
               <h3 className="mt-3 font-display text-lg text-ink">{community.organization}</h3>
               <p className="mt-1 text-sm text-muted">{community.role}</p>

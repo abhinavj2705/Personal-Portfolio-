@@ -17,7 +17,7 @@ export function Experience() {
           {experienceData.map((item, index) => (
             <article
               key={`${item.role}-${item.organization}`}
-              className="relative flex h-full flex-col border border-line bg-surface p-7 transition-colors duration-300 hover:border-line-strong"
+              className="relative flex h-full flex-col border border-line bg-surface p-6 transition-colors duration-300 hover:border-line-strong"
             >
               <span className="absolute inset-x-0 top-0 h-0.5 bg-accent" aria-hidden="true" />
 
@@ -37,7 +37,7 @@ export function Experience() {
                 )}
               </div>
 
-              <h3 className="mt-5 font-display text-xl text-ink">{item.role}</h3>
+              <h3 className="mt-4 font-display text-xl text-ink">{item.role}</h3>
               <p className="mt-1 text-sm text-accent">{item.organization}</p>
               <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">{item.description}</p>
 
@@ -48,7 +48,7 @@ export function Experience() {
           ))}
         </div>
 
-        <div className="mt-14">
+        <div className="mt-10">
           <div className="flex items-center gap-4 text-muted">
             <span className="eyebrow">Leadership &amp; Involvement</span>
             <span className="h-px flex-1 bg-line" aria-hidden="true" />
@@ -56,8 +56,8 @@ export function Experience() {
 
           <div className="mt-6 grid gap-px border border-line bg-line sm:grid-cols-3">
             {leadershipData.map((item) => (
-              <div key={`${item.role}-${item.organization}`} className="bg-surface p-6">
-                <h4 className="font-display text-base text-ink">{item.role}</h4>
+              <div key={`${item.role}-${item.organization}`} className="bg-surface p-5">
+                <h3 className="font-display text-base text-ink">{item.role}</h3>
                 <p className="mt-1 text-sm text-accent">{item.organization}</p>
                 <p className="mt-3 text-xs leading-relaxed text-muted">{item.description}</p>
               </div>

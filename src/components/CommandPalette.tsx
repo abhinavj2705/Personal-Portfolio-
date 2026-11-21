@@ -18,6 +18,7 @@ import {
 import { sections } from '../data/nav';
 import { projectsData } from '../data/projects';
 import { profile } from '../data/profile';
+import { scrollToTarget } from '../utils/scroll';
 
 interface CommandPaletteProps {
   isOpen: boolean;
@@ -51,16 +52,12 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
   const [query, setQuery] = useState('');
   const [selectedIndex, setSelectedIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const previouslyFocusedRef = useRef<HTMLElement | null>(null);
 
   const scrollTo = (id: string) => {
     onClose();
-    window.setTimeout(() => {
-      if (window.__lenis) {
-        window.__lenis.scrollTo(`#${id}`, { offset: -72 });
-        return;
-      }
-      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    }, 100);
+    window.setTimeout(() => scrollToTarget(`#${id}`), 100);
   };
 
   const openLink = (url: string) => {
@@ -88,7 +85,7 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
     {
       id: 'resume',
       title: 'View resume',
-      subtitle: 'Open the resume in Google Drive',
+      subtitle: 'Open the latest resume (PDF)',
       icon: <FileText className={iconClassName} />,
       category: 'Links',
       action: () => openLink(profile.resumeUrl),
@@ -118,12 +115,13 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
   );
 
   useEffect(() => {
-    if (!isOpen) return;
-    setQuery('');
-    setSelectedIndex(0);
+    previouslyFocusedRef.current = document.activeElement as HTMLElement | null;
     const timer = window.setTimeout(() => inputRef.current?.focus(), 50);
-    return () => window.clearTimeout(timer);
-  }, [isOpen]);
+    return () => {
+      window.clearTimeout(timer);
+      previouslyFocusedRef.current?.focus();
+    };
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -131,21 +129,31 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
 
       if (event.key === 'ArrowDown') {
         event.preventDefault();
-        setSelectedIndex(
-          (prev) => (prev + 1) % (filteredCommands.length || 1),
-        );
+        setSelectedIndex((prev) => (prev + 1) % (filteredCommands.length || 1));
       } else if (event.key === 'ArrowUp') {
         event.preventDefault();
-        setSelectedIndex(
-          (prev) =>
-            (prev - 1 + filteredCommands.length) % (filteredCommands.length || 1),
-        );
+        setSelectedIndex((prev) => (prev - 1 + filteredCommands.length) % (filteredCommands.length || 1));
       } else if (event.key === 'Enter') {
         event.preventDefault();
         filteredCommands[selectedIndex]?.action();
       } else if (event.key === 'Escape') {
         event.preventDefault();
         onClose();
+      } else if (event.key === 'Tab') {
+        const focusable = panelRef.current?.querySelectorAll<HTMLElement>(
+          'input, button, [tabindex]:not([tabindex="-1"])',
+        );
+        if (!focusable?.length) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       }
     };
 
@@ -155,20 +163,39 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
 
   if (!isOpen) return null;
 
+  const activeOptionId = filteredCommands[selectedIndex]
+    ? `command-option-${filteredCommands[selectedIndex].id}`
+    : undefined;
+
   return (
     <div
       className="fixed inset-0 z-50 flex items-start justify-center bg-backdrop px-4 pt-24 backdrop-blur-md"
       onClick={onClose}
     >
       <div
+        ref={panelRef}
+        id="command-palette"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="command-palette-title"
         className="w-full max-w-xl overflow-hidden border border-line-strong bg-surface shadow-surface"
         onClick={(event) => event.stopPropagation()}
       >
+        <h2 id="command-palette-title" className="sr-only">
+          Command palette
+        </h2>
+
         <div className="flex items-center gap-3 border-b border-line px-4 py-3.5">
           <Search className="h-5 w-5 shrink-0 text-faint" aria-hidden="true" />
           <input
             ref={inputRef}
             type="text"
+            role="combobox"
+            aria-label="Search sections, projects, or links"
+            aria-expanded="true"
+            aria-controls="command-results"
+            aria-autocomplete="list"
+            aria-activedescendant={activeOptionId}
             placeholder="Search sections, projects, or links..."
             value={query}
             onChange={(event) => {
@@ -181,13 +208,19 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
             type="button"
             onClick={onClose}
             className="p-1 text-muted transition-colors hover:text-accent"
-            aria-label="Close"
+            aria-label="Close command palette"
           >
             <X className="h-4 w-4" />
           </button>
         </div>
 
-        <div className="max-h-80 space-y-1 overflow-y-auto p-2" data-lenis-prevent>
+        <div
+          id="command-results"
+          role="listbox"
+          aria-label="Results"
+          className="max-h-80 space-y-1 overflow-y-auto p-2"
+          data-lenis-prevent
+        >
           {filteredCommands.length === 0 ? (
             <div className="py-8 text-center text-sm text-faint">
               No results found for &ldquo;{query}&rdquo;
@@ -198,6 +231,9 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
               return (
                 <div
                   key={command.id}
+                  id={`command-option-${command.id}`}
+                  role="option"
+                  aria-selected={isSelected}
                   onClick={() => command.action()}
                   onMouseEnter={() => setSelectedIndex(index)}
                   className={`flex cursor-pointer items-center justify-between gap-3 border px-3.5 py-2.5 transition-colors ${
@@ -209,17 +245,13 @@ export function CommandPalette({ isOpen, onClose }: CommandPaletteProps) {
                   <div className="flex min-w-0 items-center gap-3">
                     <div
                       className={`flex h-8 w-8 shrink-0 items-center justify-center ${
-                        isSelected
-                          ? 'bg-accent text-accent-contrast'
-                          : 'bg-raised text-muted'
+                        isSelected ? 'bg-accent text-accent-contrast' : 'bg-raised text-muted'
                       }`}
                     >
                       {command.icon}
                     </div>
                     <div className="min-w-0">
-                      <div className="truncate text-sm font-medium text-ink">
-                        {command.title}
-                      </div>
+                      <div className="truncate text-sm font-medium text-ink">{command.title}</div>
                       <div className="truncate text-xs text-muted">{command.subtitle}</div>
                     </div>
                   </div>

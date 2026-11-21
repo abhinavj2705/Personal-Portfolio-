@@ -11,12 +11,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script>
       (function() {
-        var theme = localStorage.getItem('portfolio_theme') || 'dark';
-        if (theme === 'light') {
-          document.documentElement.classList.remove('dark');
-        } else {
-          document.documentElement.classList.add('dark');
+        var theme = 'dark';
+        try {
+          theme = localStorage.getItem('portfolio_theme') || 'dark';
+        } catch (e) {
+          theme = 'dark';
         }
+        document.documentElement.classList.toggle('dark', theme !== 'light');
       })();
     </script>
   </head>

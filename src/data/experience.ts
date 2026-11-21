@@ -19,7 +19,7 @@ export const experienceData: ExperienceItem[] = [
   },
   {
     role: 'Business Development Lead',
-    organization: 'Christ Incubation, Consultancy and Foundation',
+    organization: 'CHRIST Incubation, Consultancy and Foundation',
     period: 'Active',
     active: true,
     description:

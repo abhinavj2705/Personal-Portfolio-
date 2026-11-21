@@ -12,7 +12,7 @@ export const achievementsData: AchievementItem[] = [
     title: 'Active students on CU Now',
     subtitle: 'Verified reach',
     description:
-      'Empowering first-year students at CHRIST University (Kengeri campus) with seamless orientation and daily campus guidance.',
+      'Empowering first-year students at CHRIST University (Kengeri Campus) with seamless orientation and daily campus guidance.',
     note: 'Product in active use',
   },
   {

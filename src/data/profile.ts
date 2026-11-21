@@ -15,6 +15,5 @@ export const profile = {
   availability: 'Open to software engineering roles',
   linkedInUrl: 'https://www.linkedin.com/in/abhinav-jadhav-',
   githubUrl: 'https://github.com/abhinavj2705',
-  resumeUrl:
-    'https://drive.google.com/file/d/1n2zPv1b2KiaOmeOGHIJ-bH1BX1fDPRg8/view?usp=sharing',
+  resumeUrl: '/Abhinav%20Jadhav%20Resume.pdf',
 } as const;

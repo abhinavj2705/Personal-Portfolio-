@@ -16,7 +16,7 @@ export function WhyMe() {
           {whyMeData.map((point, index) => (
             <div
               key={point.title}
-              className="grid gap-4 border-b border-line py-8 md:grid-cols-12 md:items-baseline md:gap-8"
+              className="grid gap-3 border-b border-line py-6 md:grid-cols-12 md:items-baseline md:gap-8"
             >
               <span className="font-mono text-[11px] tracking-[0.24em] text-accent md:col-span-1">
                 {String(index + 1).padStart(2, '0')}

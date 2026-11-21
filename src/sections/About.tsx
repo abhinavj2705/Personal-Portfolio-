@@ -27,44 +27,47 @@ export function About() {
   return (
     <section id="about" className="section-block">
       <div className="container-editorial">
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+        <div className="grid gap-8 lg:grid-cols-12 lg:gap-10">
           <div className="lg:col-span-4">
             <SectionHeader index="01" eyebrow="About" title="Engineering with intent." />
           </div>
 
           <div className="lg:col-span-8">
             <p className="font-display text-2xl leading-snug tracking-tight text-ink sm:text-3xl">
-              I am a Computer Science and Engineering (IoT) undergraduate at CHRIST University,
-              Bengaluru, passionate about building technologies, innovating and implementing my
-              ideas in order to create something that has tangible value.
+              I build software, explore emerging technologies, and turn ideas into practical
+              products.
             </p>
 
-            <div className="mt-8 space-y-5">
+            <div className="mt-6 space-y-4">
               <p className="text-sm leading-relaxed text-muted sm:text-base">
-                I am interested in various areas of technology and innovation, including
-                full-stack development, software engineering, IoT, and connected systems. It's
-                fascinating to me to understand how things function, explore new technologies and
-                tools and to build innovative and impactful products through these processes.
+                I am a Computer Science and Engineering (IoT) undergraduate at CHRIST University,
+                Bengaluru, with a strong interest in full-stack development, software engineering,
+                and connected systems.
               </p>
               <p className="text-sm leading-relaxed text-muted sm:text-base">
-                In addition to the technical aspects, I am actively participating in student
-                communities and organizations where I was able to take up various responsibilities,
-                collaborate with teams, organize initiatives, and participate in community-building
-                processes within the realm of technology.
+                My technical stack includes{' '}
+                <strong className="font-semibold text-ink">
+                  JavaScript, TypeScript, React.js, Node.js, Express.js, C/C++, HTML, CSS, and
+                  Tailwind CSS
+                </strong>
+                . I work on developing responsive web applications, backend services, REST APIs, and
+                integrated software solutions, while exploring IoT, embedded systems, sensor
+                technologies, and hardware-software integration.
               </p>
               <p className="text-sm leading-relaxed text-muted sm:text-base">
-                At the same time, I am very interested in the business and product aspects of
-                technologies – in other words, in understanding not only how certain solutions or
-                products are created, but why they are needed, for whom, and how they should be
-                developed and expanded.
+                I enjoy working across the development lifecycle, from designing user interfaces and
+                building application architectures to developing backend functionality and
+                integrating real-world technologies. My projects reflect an interest in solving
+                practical problems through technology, product thinking, and engineering.
               </p>
               <p className="text-sm leading-relaxed text-muted sm:text-base">
-                I am a constant learner, a builder, and an explorer of new opportunities, and I
-                would not want to confine myself only to one area.
+                Beyond development, I actively contribute to technical communities, collaborate with
+                developers, and take part in initiatives that bring technology and innovation closer
+                to students.
               </p>
             </div>
 
-            <dl className="mt-10 grid grid-cols-2 gap-6 border-t border-line pt-6 sm:grid-cols-4">
+            <dl className="mt-8 grid grid-cols-2 gap-6 border-t border-line pt-5 sm:grid-cols-4">
               <div>
                 <dt className="eyebrow text-faint">Based in</dt>
                 <dd className="mt-2 text-sm text-ink">Bengaluru</dd>
@@ -85,9 +88,9 @@ export function About() {
           </div>
         </div>
 
-        <div className="mt-16 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map((pillar, index) => (
-            <div key={pillar.title} className="bg-surface p-6">
+            <div key={pillar.title} className="bg-surface p-5">
               <p className="font-mono text-[11px] tracking-[0.24em] text-accent">
                 {String(index + 1).padStart(2, '0')}
               </p>

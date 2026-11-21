@@ -14,19 +14,25 @@ export function Achievements() {
 
         <div className="grid gap-px border border-line bg-line md:grid-cols-3">
           {achievementsData.map((achievement) => (
-            <div key={achievement.title} className="bg-surface p-7">
-              {achievement.metric ? (
-                <p className="font-display text-4xl tracking-tight text-accent">
-                  {achievement.metric}
-                </p>
-              ) : null}
-              <h3 className="mt-3 font-display text-xl text-ink">{achievement.title}</h3>
+            <div key={achievement.title} className="flex h-full flex-col bg-surface p-6">
+              <div className="flex h-10 items-start">
+                {achievement.metric ? (
+                  <p className="font-display text-4xl tracking-tight text-accent">
+                    {achievement.metric}
+                  </p>
+                ) : null}
+              </div>
+              <h3 className="mt-3 font-display text-xl text-ink md:min-h-[3.5rem]">
+                {achievement.title}
+              </h3>
               <p className="mt-1 text-[10px] uppercase tracking-[0.18em] text-faint">
                 {achievement.subtitle}
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-muted">{achievement.description}</p>
+              <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">
+                {achievement.description}
+              </p>
               {achievement.note ? (
-                <p className="mt-5 border-t border-line pt-3 text-[10px] uppercase tracking-[0.16em] text-faint">
+                <p className="mt-6 border-t border-line pt-3 text-[10px] uppercase tracking-[0.16em] text-faint">
                   {achievement.note}
                 </p>
               ) : null}

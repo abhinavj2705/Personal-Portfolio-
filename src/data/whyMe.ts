@@ -12,7 +12,7 @@ export const whyMeData: WhyMePoint[] = [
   {
     title: 'Full-stack range',
     description:
-      'I move comfortably from responsive interfaces and design systems to REST APIs, data modelling, and deployment concerns.',
+      'I move comfortably from responsive interfaces and design systems to REST APIs, data modeling, and deployment concerns.',
   },
   {
     title: 'Hardware to cloud',

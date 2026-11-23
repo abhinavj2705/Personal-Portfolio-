@@ -11,5 +11,7 @@ export { primarySkills, additionalSkills } from './skills';
 export type { PrimarySkill } from './skills';
 export { achievementsData } from './achievements';
 export type { AchievementItem } from './achievements';
+export { certifications } from './certifications';
+export type { CertificationItem } from './certifications';
 export { whyMeData } from './whyMe';
 export type { WhyMePoint } from './whyMe';

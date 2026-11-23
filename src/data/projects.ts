@@ -31,7 +31,7 @@ export const projectsData: ProjectItem[] = [
     purpose:
       'Serve first-year students at CHRIST University (Kengeri Campus) with a single hub for orientation, schedules, facility locations, and mentor access.',
     problemSolved:
-      'Eliminated campus onboarding confusion, fragmented WhatsApp announcements, and lost freshers during orientation weeks.',
+      'Reduced campus onboarding confusion by consolidating fragmented WhatsApp announcements and helping first-year students find guidance during orientation weeks.',
     contribution:
       'Architected the full-stack system, created responsive mobile-first UI with React & Tailwind, built REST APIs with Node/Express, and handled real-time updates.',
     technologies: ['React', 'TypeScript', 'Node.js', 'Express', 'MongoDB', 'Tailwind CSS'],

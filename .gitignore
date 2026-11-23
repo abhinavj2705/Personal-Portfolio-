@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Private certificate files (kept out of the site build and git)
+/certificates/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

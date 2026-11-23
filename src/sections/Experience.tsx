@@ -21,20 +21,21 @@ export function Experience() {
             >
               <span className="absolute inset-x-0 top-0 h-0.5 bg-accent" aria-hidden="true" />
 
-              <div className="flex items-center justify-between gap-3">
+              <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2">
                 <span className="accent-number font-mono text-[11px] tracking-[0.24em]">
                   {String(index + 1).padStart(2, '0')}
                 </span>
-                {item.active ? (
-                  <span className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.16em] text-accent">
-                    <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
-                    Active
-                  </span>
-                ) : (
-                  <span className="text-[10px] uppercase tracking-[0.16em] text-faint">
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-faint">
                     {item.period}
                   </span>
-                )}
+                  {item.active ? (
+                    <span className="flex items-center gap-1.5 text-[10px] uppercase tracking-[0.16em] text-accent">
+                      <span className="h-1.5 w-1.5 rounded-full bg-accent" aria-hidden="true" />
+                      Active
+                    </span>
+                  ) : null}
+                </div>
               </div>
 
               <h3 className="mt-4 font-display text-xl text-ink">{item.role}</h3>

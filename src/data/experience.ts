@@ -11,7 +11,7 @@ export const experienceData: ExperienceItem[] = [
   {
     role: 'Lead Software Developer',
     organization: 'Developer Society, CHRIST University',
-    period: 'Active',
+    period: 'June 2026 – Present',
     active: true,
     description:
       'Leading software development initiatives, mentoring junior engineers, and driving technical architecture for campus-wide community applications.',
@@ -20,7 +20,7 @@ export const experienceData: ExperienceItem[] = [
   {
     role: 'Business Development Lead',
     organization: 'CHRIST Incubation, Consultancy and Foundation',
-    period: 'Active',
+    period: 'August 2026 – Present',
     active: true,
     description:
       'Driving partnerships, outreach, and growth initiatives — connecting student ventures with mentors, industry, and funding opportunities.',
@@ -29,9 +29,9 @@ export const experienceData: ExperienceItem[] = [
   {
     role: 'Developer Intern',
     organization: 'Center of Excellence, CHRIST University',
-    period: 'Completed',
+    period: 'June 2025 – December 2025',
     description:
-      'Building and maintaining software solutions within the Center of Excellence, contributing to research-driven and applied engineering projects.',
+      'Built and maintained software solutions within the Center of Excellence, contributing to research-driven and applied engineering projects.',
     tag: 'Engineering',
   },
 ];

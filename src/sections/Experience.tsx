@@ -22,7 +22,7 @@ export function Experience() {
               <span className="absolute inset-x-0 top-0 h-0.5 bg-accent" aria-hidden="true" />
 
               <div className="flex items-center justify-between gap-3">
-                <span className="font-mono text-[11px] tracking-[0.24em] text-accent">
+                <span className="accent-number font-mono text-[11px] tracking-[0.24em]">
                   {String(index + 1).padStart(2, '0')}
                 </span>
                 {item.active ? (

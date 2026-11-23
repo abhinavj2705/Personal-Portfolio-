@@ -18,7 +18,7 @@ export function WhyMe() {
               key={point.title}
               className="grid gap-3 border-b border-line py-6 md:grid-cols-12 md:items-baseline md:gap-8"
             >
-              <span className="font-mono text-[11px] tracking-[0.24em] text-accent md:col-span-1">
+              <span className="accent-number font-mono text-[11px] tracking-[0.24em] md:col-span-1">
                 {String(index + 1).padStart(2, '0')}
               </span>
               <h3 className="font-display text-xl text-ink md:col-span-4">{point.title}</h3>

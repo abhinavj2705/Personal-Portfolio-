@@ -7,7 +7,7 @@ export function ProjectCard({ project, index }: { project: ProjectItem; index: n
     <article className="group border-t border-line py-7 lg:py-9">
       <div className="grid gap-6 lg:grid-cols-12">
         <div className="lg:col-span-2">
-          <p className="font-mono text-[11px] tracking-[0.24em] text-accent">
+          <p className="accent-number font-mono text-[11px] tracking-[0.24em]">
             {String(index).padStart(2, '0')}
           </p>
           <p className="mt-2 text-[10px] uppercase tracking-[0.18em] text-muted">

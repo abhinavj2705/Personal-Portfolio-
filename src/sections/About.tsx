@@ -91,7 +91,7 @@ export function About() {
         <div className="mt-12 grid gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
           {pillars.map((pillar, index) => (
             <div key={pillar.title} className="bg-surface p-5">
-              <p className="font-mono text-[11px] tracking-[0.24em] text-accent">
+              <p className="accent-number font-mono text-[11px] tracking-[0.24em]">
                 {String(index + 1).padStart(2, '0')}
               </p>
               <h3 className="mt-3 font-display text-lg text-ink">{pillar.title}</h3>

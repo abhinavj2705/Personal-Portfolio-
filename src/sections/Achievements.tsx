@@ -17,7 +17,7 @@ export function Achievements() {
             <div key={achievement.title} className="flex h-full flex-col bg-surface p-6">
               <div className="flex h-10 items-start">
                 {achievement.metric ? (
-                  <p className="font-display text-4xl tracking-tight text-accent">
+                  <p className="accent-number font-display text-4xl tracking-tight">
                     {achievement.metric}
                   </p>
                 ) : null}

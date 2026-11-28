@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Search } from 'lucide-react';
 import { Logo } from '../components/Logo';
-import { ThemeToggle } from '../components/ThemeToggle';
+import { SignatureThemeSwitch } from '../components/SignatureThemeSwitch';
 import { profile } from '../data/profile';
 import { scrollToTarget } from '../utils/scroll';
 
@@ -45,7 +45,7 @@ export function Header({ onOpenCommandPalette, isCommandPaletteOpen }: HeaderPro
         </a>
 
         <div className="flex items-center gap-1.5">
-          <ThemeToggle />
+          <SignatureThemeSwitch compact />
 
           <button
             type="button"

@@ -651,6 +651,74 @@ html:not(.dark) .accent-number {
   }
 }
 
+.signature-switch.signature-switch--compact {
+  width: 136px;
+  height: 38px;
+}
+
+.signature-switch.signature-switch--compact .signature-switch__aura {
+  inset: -7px;
+  filter: blur(10px);
+}
+
+.signature-switch.signature-switch--compact .signature-switch__glow {
+  width: 46%;
+  filter: blur(11px);
+}
+
+.signature-switch.signature-switch--compact .signature-switch__orb {
+  width: 30px;
+  height: 30px;
+  box-shadow:
+    inset 1px 1px 0 var(--glass-highlight),
+    inset -2px -3px 7px var(--signature-inset-dark),
+    0 6px 14px -7px rgba(0, 0, 0, 0.8);
+}
+
+.signature-switch.signature-switch--compact.is-light .signature-switch__orb {
+  transform: translate(calc(-50% - 6px), -50%);
+}
+
+.signature-switch.signature-switch--compact.is-dark .signature-switch__orb {
+  transform: translate(calc(-50% + 6px), -50%);
+}
+
+.signature-switch.signature-switch--compact .signature-switch__ring {
+  inset: -1px;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+}
+
+.signature-switch.signature-switch--compact .signature-switch__matrix {
+  grid-template-columns: repeat(5, 2px);
+  grid-template-rows: repeat(5, 2px);
+  gap: 2px;
+}
+
+.signature-switch.signature-switch--compact .signature-switch__dot {
+  width: 2px;
+  height: 2px;
+}
+
+.signature-switch.signature-switch--compact .signature-switch__core {
+  width: 16px;
+  height: 16px;
+  filter: blur(4px);
+}
+
+.signature-switch.signature-switch--compact .signature-switch__label {
+  font-size: 8px;
+  letter-spacing: 0.14em;
+}
+
+.signature-switch.signature-switch--compact .signature-switch__label--light {
+  left: 11px;
+}
+
+.signature-switch.signature-switch--compact .signature-switch__label--dark {
+  right: 11px;
+}
+
 .grid-overlay {
   background-image:
     radial-gradient(ellipse 70% 45% at 50% 0%, var(--color-glow), transparent 70%),

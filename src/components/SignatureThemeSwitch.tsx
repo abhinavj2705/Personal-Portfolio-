@@ -9,7 +9,11 @@ const MATRIX_DOTS = Array.from({ length: 25 }, (_, index) => ({
   row: Math.floor(index / 5),
 }));
 
-export function SignatureThemeSwitch() {
+interface SignatureThemeSwitchProps {
+  compact?: boolean;
+}
+
+export function SignatureThemeSwitch({ compact = false }: SignatureThemeSwitchProps) {
   const { theme, toggleTheme } = useTheme();
   const [isSwitching, setIsSwitching] = useState(false);
   const [glowKey, setGlowKey] = useState(0);
@@ -47,9 +51,9 @@ export function SignatureThemeSwitch() {
         aria-checked={isDark}
         aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
         title={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
-        className={`signature-switch ${isDark ? 'is-dark' : 'is-light'}${
-          isSwitching ? ' is-switching' : ''
-        }`}
+        className={`signature-switch ${compact ? 'signature-switch--compact' : ''} ${
+          isDark ? 'is-dark' : 'is-light'
+        }${isSwitching ? ' is-switching' : ''}`}
       >
         <span className="signature-switch__aura" aria-hidden="true" />
         <span key={glowKey} className="signature-switch__glow" aria-hidden="true" />
@@ -102,7 +106,7 @@ export function SignatureThemeSwitch() {
         </span>
       </button>
 
-      <p className="signature-switch__hint">Press to shift the atmosphere</p>
+      {!compact ? <p className="signature-switch__hint">Press to shift the atmosphere</p> : null}
     </div>
   );
 }

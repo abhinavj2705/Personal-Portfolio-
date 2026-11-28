@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { ArrowDown } from 'lucide-react';
+import { SignatureThemeSwitch } from '../components/SignatureThemeSwitch';
 import { ArrowLink } from '../components/ui/ArrowLink';
 import { Portrait } from '../components/ui/Portrait';
 import { profile } from '../data/profile';
@@ -86,12 +87,13 @@ export function Home() {
           </motion.div>
 
           <motion.div
-            className="lg:col-span-5"
+            className="flex w-full flex-col items-center gap-6 lg:col-span-5 lg:items-end"
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15, ease: 'easeOut' }}
           >
-            <Portrait />
+            <Portrait className="w-full max-w-[380px]" />
+            <SignatureThemeSwitch />
           </motion.div>
         </div>
 

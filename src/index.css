@@ -39,6 +39,15 @@ html.dark {
   --nav-pill-hover-bg: rgba(217, 164, 65, 0.16);
   --nav-pill-hover-text: #e6b65a;
   --nav-pill-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.8);
+  --signature-shell-top: #1e1c23;
+  --signature-shell-bottom: #101013;
+  --signature-orb-bg: #15131a;
+  --signature-shadow: 0 24px 55px -26px rgba(0, 0, 0, 0.95), 0 6px 16px -8px rgba(0, 0, 0, 0.75);
+  --signature-inset-dark: rgba(0, 0, 0, 0.5);
+  --signature-purple: #a78bfa;
+  --signature-purple-soft: rgba(167, 139, 250, 0.22);
+  --signature-amber: #f5cb7a;
+  --signature-amber-soft: rgba(245, 203, 122, 0.2);
   --grid-size: 40px;
   --header-height: 72px;
   color-scheme: dark;
@@ -76,6 +85,15 @@ html:not(.dark) {
   --nav-pill-hover-bg: rgba(169, 120, 37, 0.12);
   --nav-pill-hover-text: #8c611c;
   --nav-pill-shadow: 0 20px 50px -24px rgba(25, 25, 25, 0.4);
+  --signature-shell-top: #fffdf8;
+  --signature-shell-bottom: #ebe7de;
+  --signature-orb-bg: #f7f3ea;
+  --signature-shadow: 0 24px 55px -30px rgba(40, 30, 15, 0.38), 0 6px 16px -10px rgba(40, 30, 15, 0.22);
+  --signature-inset-dark: rgba(80, 62, 36, 0.16);
+  --signature-purple: #7c5ce0;
+  --signature-purple-soft: rgba(124, 92, 224, 0.14);
+  --signature-amber: #a9721f;
+  --signature-amber-soft: rgba(169, 114, 31, 0.14);
   color-scheme: light;
 }
 
@@ -225,6 +243,412 @@ section[id] {
 html:not(.dark) .accent-number {
   font-weight: 500;
   text-shadow: none;
+}
+
+.theme-toggle {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  width: 72px;
+  height: 32px;
+  padding: 2px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background-color: var(--color-nav);
+  transition:
+    border-color 0.25s ease,
+    background-color 0.25s ease,
+    transform 0.18s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--color-accent);
+}
+
+.theme-toggle:active {
+  transform: scale(0.96);
+}
+
+.theme-toggle__track {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 999px;
+}
+
+.theme-toggle__thumb {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  left: 2px;
+  width: calc(50% - 2px);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 999px;
+  background-color: var(--color-accent-soft);
+  transition:
+    transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s ease;
+}
+
+.theme-toggle.is-dark .theme-toggle__thumb {
+  transform: translateX(100%);
+}
+
+.theme-toggle__dots {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 3px;
+  padding: 6px 8px;
+}
+
+.theme-toggle__dot {
+  align-self: center;
+  justify-self: center;
+  width: 3px;
+  height: 3px;
+  border-radius: 999px;
+  background-color: var(--color-text-faint);
+  opacity: 0.42;
+  transition:
+    background-color 0.3s ease,
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.theme-toggle.is-light .theme-toggle__dot:nth-child(5),
+.theme-toggle.is-light .theme-toggle__dot:nth-child(6),
+.theme-toggle.is-light .theme-toggle__dot:nth-child(9),
+.theme-toggle.is-light .theme-toggle__dot:nth-child(10),
+.theme-toggle.is-dark .theme-toggle__dot:nth-child(7),
+.theme-toggle.is-dark .theme-toggle__dot:nth-child(8),
+.theme-toggle.is-dark .theme-toggle__dot:nth-child(11),
+.theme-toggle.is-dark .theme-toggle__dot:nth-child(12) {
+  background-color: var(--color-accent-bright);
+  opacity: 1;
+  transform: scale(1.4);
+}
+
+.theme-toggle.is-animating .theme-toggle__dot {
+  animation: theme-dot-pop 480ms ease-in-out;
+  animation-delay: calc(var(--dot-index) * 20ms);
+}
+
+.theme-toggle.is-animating .theme-toggle__thumb {
+  animation: theme-thumb-glow 520ms ease-out;
+}
+
+@keyframes theme-dot-pop {
+  0% {
+    transform: scale(0.75);
+  }
+
+  45% {
+    transform: scale(1.85);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes theme-thumb-glow {
+  50% {
+    box-shadow: 0 0 0 4px var(--color-accent-soft);
+  }
+}
+
+.signature-switch-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.signature-switch {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 320px);
+  height: 96px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: linear-gradient(145deg, var(--signature-shell-top), var(--signature-shell-bottom));
+  box-shadow:
+    inset 1px 1px 0 var(--glass-highlight),
+    inset -2px -2px 6px var(--signature-inset-dark),
+    var(--signature-shadow);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    border-color 0.4s ease,
+    box-shadow 0.5s ease,
+    transform 0.25s ease;
+}
+
+.signature-switch:hover {
+  border-color: var(--color-accent);
+}
+
+.signature-switch:active {
+  transform: scale(0.985);
+}
+
+.signature-switch__aura {
+  position: absolute;
+  inset: -14px;
+  z-index: -1;
+  border-radius: 999px;
+  background:
+    radial-gradient(ellipse at 28% 50%, var(--signature-purple-soft), transparent 62%),
+    radial-gradient(ellipse at 72% 50%, var(--signature-amber-soft), transparent 62%);
+  filter: blur(16px);
+  opacity: 0.75;
+  pointer-events: none;
+  transition: opacity 0.6s ease;
+}
+
+.signature-switch.is-switching .signature-switch__aura {
+  opacity: 1;
+}
+
+.signature-switch__glow {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  z-index: 1;
+  width: 38%;
+  height: 150%;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle,
+    var(--signature-purple-soft),
+    var(--signature-amber-soft) 45%,
+    transparent 72%
+  );
+  filter: blur(18px);
+  opacity: 0;
+  transform: translate(-130%, -50%) scale(0.8);
+  pointer-events: none;
+}
+
+.signature-switch.is-switching .signature-switch__glow {
+  animation: signature-glow-sweep 880ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.signature-switch__label {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  transform: translateY(-50%);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 10px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  opacity: 0.55;
+  pointer-events: none;
+  transition:
+    color 0.45s ease,
+    opacity 0.45s ease;
+}
+
+.signature-switch__label--light {
+  left: 24px;
+}
+
+.signature-switch__label--dark {
+  right: 24px;
+}
+
+.signature-switch.is-light .signature-switch__label--light,
+.signature-switch.is-dark .signature-switch__label--dark {
+  color: var(--color-accent-bright);
+  opacity: 1;
+}
+
+.signature-switch__orb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 3;
+  width: 84px;
+  height: 84px;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 32% 26%, rgba(255, 255, 255, 0.08), transparent 45%),
+    var(--signature-orb-bg);
+  box-shadow:
+    inset 2px 2px 0 var(--glass-highlight),
+    inset -4px -5px 12px var(--signature-inset-dark),
+    0 12px 26px -12px rgba(0, 0, 0, 0.8);
+  transform: translate(-50%, -50%);
+  transition:
+    transform 0.72s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.6s ease;
+}
+
+.signature-switch.is-light .signature-switch__orb {
+  transform: translate(calc(-50% - 10px), -50%);
+}
+
+.signature-switch.is-dark .signature-switch__orb {
+  transform: translate(calc(-50% + 10px), -50%);
+}
+
+.signature-switch__ring {
+  position: absolute;
+  inset: -2px;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  overflow: visible;
+}
+
+.signature-switch__ring stop:nth-child(1),
+.signature-switch__ring stop:nth-child(3) {
+  stop-color: var(--signature-purple);
+}
+
+.signature-switch__ring stop:nth-child(2) {
+  stop-color: var(--signature-amber);
+}
+
+.signature-switch__matrix {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: grid;
+  place-content: center;
+  grid-template-columns: repeat(5, 4px);
+  grid-template-rows: repeat(5, 4px);
+  gap: 5px;
+}
+
+.signature-switch__dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background-color: var(--signature-purple);
+  opacity: 0.42;
+  animation: signature-eq 1.6s ease-in-out infinite;
+  animation-delay: calc(var(--column) * 110ms + var(--row) * 45ms);
+  transition:
+    background-color 0.45s ease,
+    opacity 0.45s ease;
+}
+
+.signature-switch__dot:nth-child(5n + 3),
+.signature-switch__dot:nth-child(5n + 4),
+.signature-switch__dot:nth-child(5n + 5) {
+  background-color: var(--signature-amber);
+}
+
+.signature-switch.is-dark .signature-switch__dot {
+  animation-duration: 1.9s;
+}
+
+.signature-switch.is-switching .signature-switch__dot {
+  animation-duration: 0.62s;
+}
+
+.signature-switch__core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: radial-gradient(circle, var(--signature-amber-soft), transparent 68%);
+  filter: blur(7px);
+  opacity: 0.6;
+  transform: translate(-50%, -50%);
+  transition:
+    background 0.5s ease,
+    opacity 0.5s ease;
+}
+
+.signature-switch.is-dark .signature-switch__core {
+  background: radial-gradient(circle, var(--signature-purple-soft), transparent 68%);
+  opacity: 0.85;
+}
+
+.signature-switch__hint {
+  margin: 0;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 9px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-text-faint);
+  opacity: 0.72;
+}
+
+@keyframes signature-eq {
+  0%,
+  100% {
+    transform: scale(0.6);
+    opacity: 0.32;
+  }
+
+  50% {
+    transform: scale(1.45);
+    opacity: 1;
+  }
+}
+
+@keyframes signature-glow-sweep {
+  0% {
+    opacity: 0;
+    transform: translate(-130%, -50%) scale(0.8);
+  }
+
+  35% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(310%, -50%) scale(1.15);
+  }
+}
+
+@media (max-width: 640px) {
+  .signature-switch {
+    width: min(88vw, 286px);
+    height: 82px;
+  }
+
+  .signature-switch__orb {
+    width: 70px;
+    height: 70px;
+  }
+
+  .signature-switch__matrix {
+    grid-template-columns: repeat(5, 3px);
+    grid-template-rows: repeat(5, 3px);
+    gap: 4px;
+  }
+
+  .signature-switch__dot {
+    width: 3px;
+    height: 3px;
+  }
+
+  .signature-switch__label {
+    font-size: 9px;
+  }
+
+  .signature-switch__label--light {
+    left: 18px;
+  }
+
+  .signature-switch__label--dark {
+    right: 18px;
+  }
 }
 
 .grid-overlay {

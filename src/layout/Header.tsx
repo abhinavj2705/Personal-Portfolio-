@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Moon, Search, Sun } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { Logo } from '../components/Logo';
-import { useTheme } from '../theme/useTheme';
+import { ThemeToggle } from '../components/ThemeToggle';
 import { profile } from '../data/profile';
 import { scrollToTarget } from '../utils/scroll';
 
@@ -14,7 +14,6 @@ const shortcutLabel = /Mac|iPhone|iPad/.test(navigator.userAgent) ? '⌘K' : 'Ct
 
 export function Header({ onOpenCommandPalette, isCommandPaletteOpen }: HeaderProps) {
   const [scrolled, setScrolled] = useState(false);
-  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 12);
@@ -46,14 +45,7 @@ export function Header({ onOpenCommandPalette, isCommandPaletteOpen }: HeaderPro
         </a>
 
         <div className="flex items-center gap-1.5">
-          <button
-            type="button"
-            onClick={toggleTheme}
-            className="flex h-9 w-9 items-center justify-center border border-line text-muted transition-colors hover:border-accent hover:text-accent"
-            aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
-          >
-            {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-          </button>
+          <ThemeToggle />
 
           <button
             type="button"
